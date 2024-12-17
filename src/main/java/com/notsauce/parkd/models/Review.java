@@ -7,7 +7,5 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User extends AbstractEntity {
-
-
+public class Review {
 }
