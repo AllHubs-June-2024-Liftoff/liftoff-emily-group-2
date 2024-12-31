@@ -5,6 +5,24 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Home Page</h1>
+<div name="search">
+    <a th:href="@{/search}">Search for parks</a>
+</div>
 
+<div name="userTools">
+    <div>
+        <p>Sign Up</p>
+        <p>Login</p>
+    </div>
+</div>
+
+<div th:each="park : ${npsResponse.data}">
+    <h1 th:text="${park.fullName}">Default Name</h1>
+    <div th:each=" image : ${park.images[0]}">
+        <img th:src="${image.url}" width="400" height="200"/>
+    </div>
+    <p th:text="${park.description}"></p>
+</div>
 </body>
 </html>

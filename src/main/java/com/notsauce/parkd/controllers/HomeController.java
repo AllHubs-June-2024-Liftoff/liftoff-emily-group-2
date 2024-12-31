@@ -12,7 +12,7 @@ import java.io.IOException;
 @Controller
 public class HomeController {
 
-    @Autowired
+
 
 
     @GetMapping("/")

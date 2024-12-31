@@ -1,5 +1,6 @@
 package com.notsauce.parkd.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.notsauce.parkd.models.nps_data_fields.ParkImage;
 import jakarta.persistence.Column;
@@ -14,13 +15,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Park {
     @Id
     @Column(unique = true)
     private String parkCode;
-
-    @Transient
-    @JsonInclude
     private String url;
     private String fullName;
     @Transient
