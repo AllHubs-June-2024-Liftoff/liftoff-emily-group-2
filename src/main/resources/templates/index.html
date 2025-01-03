@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Parkd Index</title>
 </head>
 <body>
 <h1>Home Page</h1>
@@ -16,13 +16,14 @@
         <p>Login</p>
     </div>
 </div>
-
 <div th:each="park : ${npsResponse.data}">
+    <div th:if = "${park.designation.equals('National Park')}">
     <h1 th:text="${park.fullName}">Default Name</h1>
     <div th:each=" image : ${park.images[0]}">
         <img th:src="${image.url}" width="400" height="200"/>
     </div>
     <p th:text="${park.description}"></p>
+</div>
 </div>
 </body>
 </html>

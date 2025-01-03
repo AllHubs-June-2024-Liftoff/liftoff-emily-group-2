@@ -24,6 +24,9 @@ public class Park {
     private String fullName;
     @Transient
     @JsonInclude
+    private String designation;
+    @Transient
+    @JsonInclude
     private String description;
     @Transient
     @JsonInclude
