@@ -1,0 +1,278 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.logout-header {
+    background-color: #28a745;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Profile Dropdown Menu */
+.profile {
+    position: relative;
+    display: inline-block;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 200px;
+    z-index: 1000;
+}
+
+.profile:hover .dropdown {
+    display: block;
+}
+
+.dropdown-header {
+    background-color: #e8f5e9;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dcedc8;
+}
+
+.dropdown-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dropdown-header div {
+    font-size: 0.9em;
+}
+
+.dropdown-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #1b5e20;
+}
+
+.dropdown-header p {
+    margin: 0;
+    color: #33691e;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #2e7d32;
+    border-bottom: 1px solid #f1f8e9;
+}
+
+.dropdown a:last-child {
+    border-bottom: none;
+}
+
+.dropdown a:hover {
+    background-color: #f1f8e9;
+}
+
+/* Profile Container Styles */
+.profile-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #e6f4ea;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-header .profile-info {
+    text-align: left;
+}
+
+.profile-header .profile-info h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #2e7d32;
+}
+
+.profile-header .profile-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f1f9f3;
+}
+
+.stats .stat {
+    text-align: center;
+}
+
+.stats .stat h2 {
+    margin: 0;
+    font-size: 2em;
+    color: #28a745;
+}
+
+.stats .stat p {
+    margin: 5px 0;
+    color: #777;
+}
+
+.badges {
+    padding: 20px;
+    text-align: left;
+}
+
+.badges h2 {
+    margin: 0 0 10px;
+    text-align: left;
+    color: #2e7d32;
+}
+
+.badge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.badge {
+    background-color: #e6f4ea;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.badge img {
+    width: 50px;
+    height: 50px;
+}
+
+.badge p {
+    margin: 5px 0 0;
+}
+
+/* Login/Register Container */
+.login-container {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2e7d32;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-top: 15px;
+}
+
+form div {
+    margin-top: 10px;
+}
+
+label {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #1b5e20;
+}
+
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.register-link a {
+    color: #2e7d32;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #666;
+}

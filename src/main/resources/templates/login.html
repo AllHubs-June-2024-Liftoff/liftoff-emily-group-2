@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Park'd</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+
+<h1>Park'd</h1>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input th:field="${loginFormDTO.username}" id="username" />
+            <p th:errors="${loginFormDTO.username}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input th:field="${loginFormDTO.password}" id="password" type="password" />
+            <p th:errors="${loginFormDTO.password}"></p>
+        </div>
+
+        <button type="submit" class="login-button">Login</button>
+    </form>
+    <div class="register-link">
+        <p>First time here? <a th:href="@{/register}">Register</a></p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Park'd. All rights reserved.
+</footer>
+
+</body>
+</html>

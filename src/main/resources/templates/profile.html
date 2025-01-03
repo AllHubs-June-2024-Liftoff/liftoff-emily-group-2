@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park'd Profile</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+    <div class="profile">
+        <img src="Images/smoky.jpg" alt="Profile Picture">
+        <div class="dropdown">
+            <div class="dropdown-header">
+                <img src="Images/smoky.jpg" alt="Profile Picture">
+                <div>
+                    <h4>John Doe</h4>
+                    <p>Trailblazer | Parks Enthusiast</p>
+                </div>
+            </div>
+            <a th:href="@{/profile}">Profile</a>
+            <a href="#">Settings</a>
+            <a th:href="@{/login}">Logout</a>
+        </div>
+    </div>
+</header>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="Images/smoky.jpg" alt="Profile Picture">
+        <div class="profile-info">
+            <h1>John Doe</h1>
+            <p>Trailblazer | Parks Enthusiast</p>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <h2>12</h2>
+            <p>Parks</p>
+        </div>
+        <div class="stat">
+            <h2>10</h2>
+            <p>Badges</p>
+        </div>
+        <div class="stat">
+            <h2>5</h2>
+            <p>Reviews</p>
+        </div>
+        <div class="stat">
+            <h2>2</h2>
+            <p>Followers</p>
+        </div>
+    </div>
+
+    <div class="badges">
+        <h2>Achievements</h2>
+        <div class="badge-grid">
+            <div class="badge">
+                <img src="badge-placeholder.png" alt="Badge">
+                <p>Beginner</p>
+            </div>
+            <div class="badge">
+                <img src="badge-placeholder.png" alt="Badge">
+                <p>Trailhead Adventurer</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    &copy; 2025 Park'd. All rights reserved.
+</footer>
+</body>
+</html>

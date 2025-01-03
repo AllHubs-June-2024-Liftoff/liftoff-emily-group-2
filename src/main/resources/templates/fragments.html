@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+
+    <!-- Bootstrap stylesheets and script -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/parkd.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+    <title th:text="'Parkd' + ${title == null ? '' : ' :: ' + title}">Parkd</title>
+</head>
+
+<body>
+
+<div th:fragment="page-header" >
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/}" class="navbar-brand">Parkd</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <th:block th:if="${session} and ${session.isEmpty()}">
+                    <li><a th:href="@{/register}">Register</a></li>
+                    <li><a th:href="@{/login}">Log In</a></li>
+                </th:block>
+                <th:block th:unless="${session} and ${session.isEmpty()}">
+                    <li><a th:href="@{/add}">Add Parks</a></li>
+                    <li><a th:href="@{/logout}">Log Out</a></li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
