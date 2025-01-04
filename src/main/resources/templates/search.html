@@ -19,12 +19,13 @@
             <input type="text" name="searchTerm" id="searchTerm" />
         </div>
 
-<!--        <div>-->
-<!--            <label for="searchState">State</label>-->
-<!--            <select  name="searchState" id="searchState">-->
-<!--                <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
+        <div>
+            <label for="searchState">State</label>
+            <select  name="searchState" id="searchState">
+                <option value=""></option>
+                <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>
+            </select>
+        </div>
 
         <div>
             <input type="submit" value="Submit">
