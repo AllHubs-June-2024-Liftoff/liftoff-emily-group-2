@@ -20,15 +20,12 @@ import java.util.*;
 @RequestMapping("search")
 public class SearchController {
 
-    //    https://developer.nps.gov/api/v1/parks?
-//    limit=473&start=0&
-//    q=linc&api_key=CUzkMTnNk745wAFn8zcHRo8NqXbEFmUglCDLbgmC
-    @RequestMapping("")
+    @RequestMapping("/")
     public String index(Model model) {
         ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
         NpsResponse response;
         List<Park> parksToRender = new ArrayList<>();
-        Set<String> statesFinal = new HashSet<>();
+        Set<String> states = new HashSet<>();
 
 
 
@@ -41,10 +38,10 @@ public class SearchController {
 // splits comma separated values into single values and adds them to an array.
         for (Park park : response.getData()) {
             String[] statesPerPark =  park.getStates().split(",");
-            statesFinal.addAll(Arrays.asList(statesPerPark));
+            states.addAll(Arrays.asList(statesPerPark));
         }
 
-        model.addAttribute("states", statesFinal);
+        model.addAttribute("states", states);
 
         return "search";
     }
@@ -55,6 +52,8 @@ public class SearchController {
         NpsResponse response;
         List<Park> parksToRender = new ArrayList<>();
         Set<String> states = new HashSet<>();
+        String fullName = "";
+        String stateCode = "";
 
         try {
             response = objectMapperDemo.readJsonWithObjectMapper();
@@ -62,6 +61,13 @@ public class SearchController {
             throw new RuntimeException(e);
         }
 
+        // splits comma separated values into single values and adds them to an array.
+        for (Park park : response.getData()) {
+            String[] statesPerPark =  park.getStates().split(",");
+            states.addAll(Arrays.asList(statesPerPark));
+        }
+
+        List<String> userInput = Arrays.asList(searchTerm.split(","));
 
 
         if (searchTerm.isEmpty()) {
@@ -73,6 +79,14 @@ public class SearchController {
                 parksToRender.add(park);
             }
         }
+
+        //sout for debugging
+        System.out.println("-------------------------");
+        System.out.println("searchTerm : " + searchTerm);
+        System.out.println("Full searchTem : "  + userInput);
+        System.out.println("fullName Search : "  + fullName);
+        System.out.println("State Code search : "  + stateCode);
+        System.out.println("-------------------------");
 
         model.addAttribute("parks", parksToRender);
 
