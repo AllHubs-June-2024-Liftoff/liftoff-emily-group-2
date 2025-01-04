@@ -68,11 +68,11 @@ public class SearchController {
             parksToRender = response.getData();
         }
 
-//        for (Park park : response.getData()) {
-//            if ((park.getFullName().toLowerCase()).contains(searchTerm.toLowerCase())) {
-//                parksToRender.add(park);
-//            }
-//        }
+        for (Park park : response.getData()) {
+            if ((park.getFullName().toLowerCase()).contains(searchTerm.toLowerCase())) {
+                parksToRender.add(park);
+            }
+        }
 
         model.addAttribute("parks", parksToRender);
 
