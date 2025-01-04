@@ -36,7 +36,7 @@
         <div th:if = "${park.designation.equals('National Park')}">
             <h1 th:text="${park.fullName}">Default Name</h1>
             <div th:each=" image : ${park.images[0]}">
-                <img th:src="${image.url}" width="400" height="200"/> <!--/*TODO: Add alt text for images */-->
+                <img th:src="${image.url}" width="400" height="200" alt=""/> <!--/*TODO: Add alt text for images */-->
             </div>
             <p th:text="${park.description}"></p>
             <p th:text="${park.states}"></p>
