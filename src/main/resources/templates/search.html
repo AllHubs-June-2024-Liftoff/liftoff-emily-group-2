@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <div th:each="park : ${npsResponse.data}">
+    <div th:each="park : ${parks}">
         <div th:if = "${park.designation.equals('National Park')}">
             <h1 th:text="${park.fullName}">Default Name</h1>
             <div th:each=" image : ${park.images[0]}">
