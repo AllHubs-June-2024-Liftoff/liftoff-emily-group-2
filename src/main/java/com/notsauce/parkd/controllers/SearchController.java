@@ -50,7 +50,7 @@ public class SearchController {
     }
 
     @PostMapping("results")
-    public String searchForPark(Model model, @RequestParam String searchTerm, @RequestParam String searchState ) {
+    public String searchForPark(Model model, @RequestParam String searchTerm ) {
         ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
         NpsResponse response;
         List<Park> parksToRender = new ArrayList<>();
