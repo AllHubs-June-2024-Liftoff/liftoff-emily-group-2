@@ -29,5 +29,33 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/landing")
+    public String landing(Model model) {
+        ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
+        NpsResponse response;
+        try {
+            response = objectMapperDemo.readJsonWithObjectMapper();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        model.addAttribute("npsResponse", response);
+        return "landing";
+    }
+
+    @GetMapping("/parkcard")
+    public String parkcard(Model model) {
+        ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
+        NpsResponse response;
+        try {
+            response = objectMapperDemo.readJsonWithObjectMapper();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        model.addAttribute("npsResponse", response);
+        return "parkcard";
+    }
+
 
 }

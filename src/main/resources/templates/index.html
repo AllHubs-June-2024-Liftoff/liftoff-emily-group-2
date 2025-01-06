@@ -18,6 +18,7 @@
 </div>
 <div th:each="park : ${npsResponse.data}">
     <div th:if = "${park.designation.equals('National Park')}">
+    <!--<div th:if = "${park.designation.equals('National Park')}"> Preferably filter before this point -->
     <h1 th:text="${park.fullName}">Default Name</h1>
     <div th:each=" image : ${park.images[0]}">
         <img th:src="${image.url}" width="400" height="200"/> <!--/*TODO: Add alt text for images */-->

@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Sample Park Card</title>
 </head>
 <body>
+<h3>Glacier National Park Card Sample:</h3>
 
+</div>
+<div th:each="park : ${npsResponse.data}">
+    <div th:if = "${park.parkCode.equals('glac')}">
+        <h2 th:text="${park.name}">Default Name</h2>
+        <div th:text="${park.latitude + ' ' + park.longitude}">Default LatLong</div>
+        <!-- <div th:text="${park.longitude}">Default Long</div> -->
+        <div th:each=" image : ${park.images[0]}">
+            <img th:src="${image.url}" width="400" height="600"/> <!--/*TODO: Add alt text for images */-->
+            <img th:src="${image.url}" width="250" height="300"/>
+            <img th:src="${image.url}" width="500" height="600"/>
+            <img th:src="${image.url}" width="600" height="400"/>
+            <!--2.5 x 3.5 is trading card size/ratio, 4 x 6 is postcard size/ratio -->
+        </div>
+        <p th:text="${park.description}"></p>
+    </div>
+</div>
 </body>
 </html>
