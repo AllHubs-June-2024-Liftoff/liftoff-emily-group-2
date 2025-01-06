@@ -4,9 +4,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import java.util.Objects;
-//import lombok.Getter;
+import lombok.Getter;
 
-//@Getter
+@Getter
 @MappedSuperclass
 public abstract class AbstractEntity {
 

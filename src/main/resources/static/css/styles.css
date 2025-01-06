@@ -18,13 +18,6 @@ header {
     position: relative;
 }
 
-.logout-header {
-    background-color: #28a745;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
 /* Profile Dropdown Menu */
 .profile {
     position: relative;
@@ -164,7 +157,6 @@ header {
 
 .badges {
     padding: 20px;
-    text-align: left;
 }
 
 .badges h2 {
@@ -219,10 +211,6 @@ form {
 
 .form-group {
     margin-top: 15px;
-}
-
-form div {
-    margin-top: 10px;
 }
 
 label {

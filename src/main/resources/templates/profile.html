@@ -7,16 +7,15 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
-
 <header>
     <div class="profile">
-        <img src="Images/smoky.jpg" alt="Profile Picture">
+        <img src="profile-placeholder.png" alt="Profile Picture">
         <div class="dropdown">
             <div class="dropdown-header">
-                <img src="Images/smoky.jpg" alt="Profile Picture">
+                <img src="profile-placeholder.png" alt="Profile Picture">
                 <div>
-                    <h4>John Doe</h4>
-                    <p>Trailblazer | Parks Enthusiast</p>
+                    <h4 th:text="${user}" >John Doe</h4>
+                    <p>Parks Enthusiast</p>
                 </div>
             </div>
             <a th:href="@{/profile}">Profile</a>
@@ -28,10 +27,10 @@
 
 <div class="profile-container">
     <div class="profile-header">
-        <img src="Images/smoky.jpg" alt="Profile Picture">
+        <img src="profile-placeholder.png" alt="Profile Picture">
         <div class="profile-info">
-            <h1>John Doe</h1>
-            <p>Trailblazer | Parks Enthusiast</p>
+            <h1 th:text="${user}" >John Doe</h1>
+            <p>Parks Enthusiast</p>
         </div>
     </div>
 
@@ -63,7 +62,7 @@
             </div>
             <div class="badge">
                 <img src="badge-placeholder.png" alt="Badge">
-                <p>Trailhead Adventurer</p>
+                <p>Adventurer</p>
             </div>
         </div>
     </div>
