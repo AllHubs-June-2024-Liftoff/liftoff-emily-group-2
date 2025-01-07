@@ -7,6 +7,7 @@ import com.notsauce.parkd.models.User;
 import com.notsauce.parkd.models.data.UserRepository;
 import com.notsauce.parkd.models.dto.LoginFormDTO;
 import com.notsauce.parkd.models.dto.RegistrationFormDTO;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 @Controller
 public class AuthenticationController {
+
 
     @Autowired
     private UserRepository userRepository;
@@ -82,7 +84,7 @@ public class AuthenticationController {
         User newUser = new User(registrationFormDTO.getUsername(), registrationFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-        return "redirect:/profile";
+        return "redirect:/";
 
     }
 
@@ -115,7 +117,7 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
-        return "redirect:/profile";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
