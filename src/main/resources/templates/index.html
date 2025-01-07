@@ -11,10 +11,7 @@
 </div>
 
 <div name="userTools">
-    <div>
-       <p><a th:href="@{/register}">Sign Up</a></p>
-       <p><a th:href="@{/login}">Login</a></p>
-    </div>
+    <nav th:replace="fragments :: page-header"></nav>
 </div>
 <div th:each="park : ${npsResponse.data}">
     <div th:if = "${park.designation.equals('National Park')}">
