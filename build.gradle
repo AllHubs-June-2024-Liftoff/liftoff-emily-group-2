@@ -40,8 +40,10 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation("org.jmockit:jmockit:1.49")
-
 	implementation 'org.springframework.boot:spring-boot-starter-json:3.3.2'
+	implementation("org.springframework.security:spring-security-crypto:5.5.1")
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
