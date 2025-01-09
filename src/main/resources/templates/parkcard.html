@@ -9,12 +9,12 @@
 <!--Glacier Park code is 'glac'  -->
 </div>
 <div th:each="park : ${npsResponse.data}">
-    <div th:if = "${park.parkCode.equals('yell')}">
+    <div th:if = "${park.parkCode.equals('glac')}">
         <h2 th:text="${park.name}">Default Name</h2>
         <div th:text="${park.latitude + ' ' + park.longitude}">Default LatLong</div>
         <div th:text="${park.states}">Default LatLong</div>
         <!-- <div th:text="${park.longitude}">Default Long</div> -->
-        <div th:each=" image : ${park.images}">
+        <div th:each=" image : ${park.images[0]}"> <!--Image can be specified by array number or list full set-->
             <img src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="500" height="600"/>
             <p th:text="'Credit: ' + ${image.credit}"></p>
             <!-- <img th:src="${image.url}" width="400" height="600"/> -->
@@ -27,7 +27,7 @@
             <!--ParkGuessr? With images? -->
         </div>
         <p th:text="${park.description}">Description</p>
-        <p th:text="${park.weatherInfo}">Weather Info</p>
+        <p th:text="${park.weatherInfo}">Weather Info</p> <!--weatherInfo is not formatted the same for all parks-->
     </div>
 </div>
 </body>
