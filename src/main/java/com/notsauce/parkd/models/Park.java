@@ -40,7 +40,10 @@ public class Park {
     @Transient
     @JsonInclude
     private String latLong;
-    private String states;
+    private String states; //TODO? Function that translates state abbreviations to full state names? Or State shape icons?
+    @Transient
+    @JsonInclude
+    private String weatherInfo; //Likely should be hidden behind text dropdown or icon
     @Transient
     @JsonInclude
     private List<ParkImage> images;
@@ -120,7 +123,7 @@ latLong is a useful/cute property to potentially incorporate if not other mappin
 Subcategories to potentially use:
 
 parks
-activities
+activities - useful, topics, maybe less so
 activities/parks
 webcams - useful
 thingstodo - potentially useful but very dense

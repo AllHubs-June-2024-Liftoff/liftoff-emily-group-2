@@ -14,8 +14,10 @@ import lombok.Setter;
 public class ParkImage {
 
     private int id;
-    private String url;
     private String credit;
     private String title;
+    private String altText;
+    private String caption;
+    private String url;
 
 }
