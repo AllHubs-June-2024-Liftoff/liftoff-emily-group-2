@@ -8,4 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Review extends AbstractEntity {
+    private String parkCodeId;
+    private String userId;
+    private int review;
 }
