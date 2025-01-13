@@ -1,11 +1,14 @@
 package com.notsauce.parkd.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 
 @Getter
@@ -19,6 +22,11 @@ public class User extends AbstractEntity {
 
     @NotNull
     private String pwHash;
+
+    @OneToMany
+    private List<Review> reviews;
+    @OneToMany
+    private List<Comment> comments;
 
     public User(String username, String password) {
         this.username = username;

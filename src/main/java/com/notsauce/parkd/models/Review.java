@@ -10,5 +10,6 @@ import lombok.Setter;
 public class Review extends AbstractEntity {
     private String parkCodeId;
     private String userId;
+    private String parkCode;
     private int review;
 }
