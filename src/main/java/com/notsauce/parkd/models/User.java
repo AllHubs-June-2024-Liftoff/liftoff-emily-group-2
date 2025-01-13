@@ -23,9 +23,7 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-    @OneToMany
-    private List<Review> reviews;
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
     public User(String username, String password) {
