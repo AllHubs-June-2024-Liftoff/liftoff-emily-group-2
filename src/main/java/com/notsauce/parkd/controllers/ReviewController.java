@@ -45,7 +45,6 @@ public class ReviewController {
 
             comment.setPark(park);
             commentRepository.save(comment);
-
         }
       return "/parkcard/{parkCode}";
 }
