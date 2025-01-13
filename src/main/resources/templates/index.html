@@ -13,11 +13,13 @@
     <a th:href="@{parks/parkcard}">Park Card Demo Path</a>
 </div>
 
+
 <div name="userTools">
     <nav th:replace="fragments :: page-header"></nav>
 </div>
 <div th:each="park : ${npsResponse.data}">
     <div th:if = "${park.designation.equals('National Park')}">
+        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
     <h1 th:text="${park.fullName}">Default Name</h1>
     <div th:each=" image : ${park.images[0]}">
         <img th:src="${image.url}" width="400" height="200"/> <!--/*TODO: Add alt text for images */-->

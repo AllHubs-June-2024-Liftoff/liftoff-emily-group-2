@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Submit Park Review</h1>
+<form>
+    <label>Comment</label>
+    <input th:field="${comment.comment}" name="comment"/>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

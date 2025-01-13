@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<p>parkcard view</p>
+<h1>Park View</h1>
+<p th:text="${'Park Code: ' + park.parkCode}"></p>
+<p th:text="${'Name: ' + park.fullName}"></p>
+
+<div name="submitReview">
+    <a th:href="@{'/reviews/submit/' + ${park.parkCode}}">Submit a review</a>
+</div>
+
 </body>
 </html>
