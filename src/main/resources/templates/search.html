@@ -34,6 +34,7 @@
 
     <div th:each="park : ${parks}">
         <div th:if = "${park.designation.equals('National Park')}">
+            <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
             <h1 th:text="${park.fullName}">Default Name</h1>
             <div th:each=" image : ${park.images[0]}">
                 <img th:src="${image.url}" width="400" height="200" alt=""/> <!--/*TODO: Add alt text for images */-->
