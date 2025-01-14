@@ -26,6 +26,8 @@ public class ReviewController {
     @Autowired
     private UserRepository userRepository;
 
+
+
     ///parkcard/{parkCode}
     @GetMapping("reviews/submit/{parkCode}")
     public String displaySubmitForm(Model model, @PathVariable String parkCode) {
@@ -42,13 +44,14 @@ public class ReviewController {
     @PostMapping("reviews/submit/{parkCode}")
     public String submitCommentToPark(@PathVariable String parkCode, Comment comment, Errors errors, HttpSession session) {
 
+        Park aPark = new Park();
         if (errors.hasErrors()) {
-            return "parks/parkcard/" + parkCode ;
+            return "redirect:/parks/parkcard/" + parkCode;
         }
 
         Optional<Park> optionalPark = parkRepository.findById(parkCode);
         if (optionalPark.isPresent()) {
-            Park park = optionalPark.get();
+            aPark = optionalPark.get();
 
             Optional<User> optionalUser = userRepository.findById((Integer) session.getAttribute("user"));
             if (optionalUser.isPresent()) {
@@ -57,10 +60,10 @@ public class ReviewController {
                 comment.setUser(aUser);
             }
 
-            comment.setPark(park);
+            comment.setPark(aPark);
             commentRepository.save(comment);
         }
-      return  "parks/parkcard/" + parkCode ;
+        return "redirect:/parks/parkcard/" + parkCode;
 }
 }
 
