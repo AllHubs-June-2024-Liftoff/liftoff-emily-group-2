@@ -9,13 +9,14 @@ import org.hibernate.annotations.Comments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("reviews")
+
 public class ReviewController {
 
     @Autowired
@@ -24,21 +25,26 @@ public class ReviewController {
     private ParkRepository parkRepository;
 
     ///parkcard/{parkCode}
-    @GetMapping("/submit/{parkCode}")
+    @GetMapping("reviews/submit/{parkCode}")
     public String displaySubmitForm(Model model, @PathVariable String parkCode) {
         Optional<Park> optionalPark = parkRepository.findById(parkCode);
         if (optionalPark.isPresent()) {
             Park park = optionalPark.get();
 
             model.addAttribute("park", park);
-            model.addAttribute(new Comment());
+            model.addAttribute("comment", new Comment());
 
         }
         return "reviews/submit";
     }
 
-    @PostMapping("/submit/{parkCode}")
-    public String submitCommentToPark(@PathVariable String parkCode, @ModelAttribute @Valid Comment comment) {
+    @PostMapping("reviews/submit/{parkCode}")
+    public String submitCommentToPark(@PathVariable String parkCode, Comment comment, Errors errors) {
+
+        if (errors.hasErrors()) {
+            return "parks/parkcard/" + parkCode ;
+        }
+
         Optional<Park> optionalPark = parkRepository.findById(parkCode);
         if (optionalPark.isPresent()) {
             Park park = optionalPark.get();
@@ -46,7 +52,7 @@ public class ReviewController {
             comment.setPark(park);
             commentRepository.save(comment);
         }
-      return "/parkcard/{parkCode}";
+      return  "parks/parkcard/" + parkCode ;
 }
 }
 

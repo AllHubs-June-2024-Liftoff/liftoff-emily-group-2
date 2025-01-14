@@ -8,6 +8,9 @@
 <h1>Park View</h1>
 <p th:text="${'Park Code: ' + park.parkCode}"></p>
 <p th:text="${'Name: ' + park.fullName}"></p>
+    <ul th:each="comment : ${park.comments}">
+        <li th:text="${comment.input}"></li>
+    </ul>
 
 <div name="submitReview">
     <a th:href="@{'/reviews/submit/' + ${park.parkCode}}">Submit a review</a>

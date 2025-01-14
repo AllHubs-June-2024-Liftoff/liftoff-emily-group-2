@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Submit Park Review</h1>
-<form>
-    <label>Comment</label>
-    <input th:field="${comment.comment}" name="comment"/>
+<form method="post">
+    <label th:for="comment">Comment</label>
+    <input th:field="${comment.input}"/>
     <input type="submit" value="Submit">
 </form>
 </body>

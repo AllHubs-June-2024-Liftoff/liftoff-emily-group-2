@@ -4,6 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 public class Comment extends AbstractEntity {
@@ -11,7 +15,6 @@ public class Comment extends AbstractEntity {
     private Park park;
     @ManyToOne
     private User user;
-    private String comment;
-
+    private String input;
 
 }
