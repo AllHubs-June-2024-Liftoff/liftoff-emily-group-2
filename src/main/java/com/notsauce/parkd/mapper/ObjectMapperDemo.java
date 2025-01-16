@@ -12,7 +12,7 @@ public class ObjectMapperDemo {
     public NpsResponse readJsonWithObjectMapper() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        URL parkRequest = new URL("https://developer.nps.gov/api/v1/parks?limit=600&start=0&api_key=CUzkMTnNk745wAFn8zcHRo8NqXbEFmUglCDLbgmC"); //Limit set to 65 TODO: adjust limit higher?
+        URL parkRequest = new URL("https://developer.nps.gov/api/v1/parks?limit=1000&start=0&api_key=CUzkMTnNk745wAFn8zcHRo8NqXbEFmUglCDLbgmC"); //Limit set to 65 TODO: adjust limit higher?
 
 
         //@@@ URL webcamRequest = new URL("https://developer.nps.gov/api/v1/webcams?parkCode=glac&limit=220&api_key=CUzkMTnNk745wAFn8zcHRo8NqXbEFmUglCDLbgmC");

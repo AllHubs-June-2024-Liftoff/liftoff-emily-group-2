@@ -7,12 +7,16 @@
 <body>
 <h3>Glacier National Park Card Sample:</h3>
 <!--Glacier Park code is 'glac'  -->
+<!--'seki' covers both Kings Canyon & Sequoia with designation National Park*s* PLURAL. Likely other parks have same issue -->
+<!--National Park of American Samoa 'npsa' lacks a designation at all so would need to be added as edge case-->
+
 </div>
 <div th:each="park : ${npsResponse.data}">
     <div th:if = "${park.parkCode.equals('glac')}">
         <h2 th:text="${park.name}">Default Name</h2>
         <div th:text="${park.latitude + ' ' + park.longitude}">Default LatLong</div>
-        <div th:text="${park.states}">Default LatLong</div>
+        <div th:text="${park.states}">Default States</div>
+        <div th:text="${park.designation}">Default Designation</div>
         <!-- <div th:text="${park.longitude}">Default Long</div> -->
         <div th:each=" image : ${park.images[0]}"> <!--Image can be specified by array number or list full set-->
             <img src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="500" height="600"/>
@@ -35,12 +39,12 @@
 
 <div>
     <h3>Webcams Go Here:</h3>
-    <div th:each="webcam : ${npsCamResponse.data}">
-        <!-- <div th:if = ${Webcam.id.equals('822EF961-A234-4B92-B064-097023D5661F')}> -->
-            <div th:each=" view : ${webcam.webcams[0]}">
-                <img src="${view.url}" th:attr="src=${view.url},alt=${view.title}" width="300" height ="300" />
-            </div>
-        </div>
+<!--    <div th:each="webcam : ${npsCamResponse.data}">-->
+<!--        &lt;!&ndash; <div th:if = ${Webcam.id.equals('822EF961-A234-4B92-B064-097023D5661F')}> &ndash;&gt;-->
+<!--            <div th:each=" view : ${webcam.webcams[0]}">-->
+<!--                <img src="${view.url}" th:attr="src=${view.url},alt=${view.title}" width="300" height ="300" />-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 
