@@ -1,16 +1,19 @@
 package com.notsauce.parkd.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+// TODO: Following Code Has Issues Probably 1x16:
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NpsCamResponse {
     private String parkCode; //array of strings
     private String stateCode; //array of strings
