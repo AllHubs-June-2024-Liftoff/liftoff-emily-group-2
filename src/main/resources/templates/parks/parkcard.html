@@ -9,10 +9,11 @@
 <p th:text="${'Park Code: ' + park.parkCode}"></p>
 <p th:text="${'Name: ' + park.fullName}"></p>
     <ul th:each="comment : ${park.comments}">
-        <li th:text="${comment.input} + ' ' + ${comment.user.username}"></li>
+        <li th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></li>
     </ul>
 <h2>Total review average</h2>
 <p th:text="${starScore}"></p>
+<p th:text="${status}"></p>
 
 <div name="submitReview">
     <a th:href="@{'/reviews/submit/' + ${park.parkCode}}">Submit a review</a>

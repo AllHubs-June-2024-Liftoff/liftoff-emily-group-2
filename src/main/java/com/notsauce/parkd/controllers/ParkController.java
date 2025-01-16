@@ -39,6 +39,7 @@ private ParkRepository parkRepository;
             List<Integer> twos = new ArrayList<>();
             List<Integer> ones = new ArrayList<>();
             int totalNumberOfVotes = 0;
+            String status = "Unfavorable";
 
             for (Review review : reviews) {
                 totalNumberOfVotes ++;
@@ -65,9 +66,14 @@ private ParkRepository parkRepository;
 
             double starScore = (double) (fivesWeight + foursWeight + threesWeight + twosWeight + onesWeight) / (totalNumberOfVotes);
 
+            if (starScore >= 3) {
+                status = "Favorable";
+            }
+
             model.addAttribute("comment", park.getComments());
             model.addAttribute("park", park);
             model.addAttribute("starScore", starScore);
+            model.addAttribute("status", status);
         }
 
         return "parks/parkcard";
