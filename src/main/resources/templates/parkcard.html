@@ -5,20 +5,19 @@
     <title>Sample Park Card</title>
 </head>
 <body>
-<h3>Glacier National Park Card Sample:</h3>
+<h3>Olympic National Park Card Sample:</h3>
 <!--Glacier Park code is 'glac'  -->
 <!--'seki' covers both Kings Canyon & Sequoia with designation National Park*s* PLURAL. Likely other parks have same issue -->
 <!--National Park of American Samoa 'npsa' lacks a designation at all so would need to be added as edge case-->
 
-</div>
 <div th:each="park : ${npsResponse.data}">
-    <div th:if = "${park.parkCode.equals('glac')}">
+    <div th:if = "${park.parkCode.equals('olym')}">
         <h2 th:text="${park.name}">Default Name</h2>
         <div th:text="${park.latitude + ' ' + park.longitude}">Default LatLong</div>
         <div th:text="${park.states}">Default States</div>
         <div th:text="${park.designation}">Default Designation</div>
         <!-- <div th:text="${park.longitude}">Default Long</div> -->
-        <div th:each=" image : ${park.images[0]}"> <!--Image can be specified by array number or list full set-->
+        <div th:each=" image : ${park.images[3]}"> <!--Image can be specified by array number or list full set-->
             <img src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="500" height="600"/>
             <p th:text="'Credit: ' + ${image.credit}"></p>
             <!-- <img th:src="${image.url}" width="400" height="600"/> -->
@@ -39,14 +38,18 @@
 
 <div>
     <h3>Webcams Go Here:</h3>
-<!--    <div th:each="webcam : ${npsCamResponse.data}">-->
-<!--        &lt;!&ndash; <div th:if = ${Webcam.id.equals('822EF961-A234-4B92-B064-097023D5661F')}> &ndash;&gt;-->
-<!--            <div th:each=" view : ${webcam.webcams[0]}">-->
-<!--                <img src="${view.url}" th:attr="src=${view.url},alt=${view.title}" width="300" height ="300" />-->
-<!--            </div>-->
-<!--        </div>-->
+    <div th:each="webcam : ${npsCamResponse.data}">
+        <div th:if = ${webcam.id.equals('577E4D96-8E42-4F3A-B074-944CD63BADB3')}>
+            <div th:text="${webcam.title}">Default Webcam Title</div>
+            <div th:text="${webcam.status}">Webcam Status</div>
+            <div th:text="${webcam.description}">Webcam Description</div>
+        </div>
     </div>
 </div>
 
 </body>
 </html>
+
+<!--<div th:each=" view : ${webcam.images}">-->
+<!--    <img src="${view.url}" th:attr="src=${view.url},alt=${view.altText}, title=${view.title}" width="300" height ="300" />-->
+<!--</div>-->

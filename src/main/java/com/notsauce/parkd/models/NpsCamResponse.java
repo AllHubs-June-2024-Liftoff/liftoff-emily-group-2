@@ -13,12 +13,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class NpsCamResponse {
-    private String parkCode; //array of strings
-    private String stateCode; //array of strings
-    private String id;
-    private String limit; // Default is 50, actually an integer??
-    private String start; //also an integer, default is 0
+    private String total;
+    private String limit;
+    private String start;
     private List<Webcam> data;
+
+//    private String parkCode; //array of strings
+//    private String stateCode; //array of strings
+//    private String id;
+//    private String limit; // Default is 50, actually an integer??
+//    private String start; //also an integer, default is 0
+//    private List<Webcam> data;
 }

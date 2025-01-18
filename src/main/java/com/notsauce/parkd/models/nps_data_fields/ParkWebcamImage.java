@@ -11,16 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "webcams")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ParkWebcam {
+public class ParkWebcamImage {
 
-    private String id;
     private String url;
+    private String credit;
+    private String altText;
     private String title;
     private String description;
-    private String relatedParks; //Format: [{states:, parkCode:, designation:, fullName:, url:, name:}]
-    private String status;
-    private String tags;
-    private String latitude;
-    private String longitude;
+    private String caption;
+    //There is also a Crops object with Aspect Ratio and URL that I'm avoiding adding initially here
 
 }
