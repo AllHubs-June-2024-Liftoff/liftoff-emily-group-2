@@ -51,7 +51,7 @@ parkRepository.saveAll(response.getData());
 
     // TODO: Following Code Has Issues Probably 1x16:
 
-    @GetMapping("/parkcard")
+    @GetMapping("/parkcarddemo")
     public String parkcard(Model model) {
         ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
         NpsResponse parkResponse;
@@ -67,7 +67,7 @@ parkRepository.saveAll(response.getData());
         model.addAttribute("npsResponse", parkResponse);
         model.addAttribute("npsCamResponse", webcamResponse);
 
-        return "parkcard";
+        return "parkcarddemo";
     }
 
 
