@@ -1,11 +1,10 @@
 package com.notsauce.parkd.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.notsauce.parkd.models.nps_data_fields.ParkImage;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Park {
     @Id
     @Column(unique = true)
@@ -48,6 +48,13 @@ public class Park {
     @JsonInclude
     private List<ParkImage> images;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "park")
+    private List<Comment> comments;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "parkReview")
+    private List<Review> reviews;
 }
 
 /*

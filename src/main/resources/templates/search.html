@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Search Page</h1>
+
+<div class="container body-content">
+
+
+    <form th:action="@{/search/results}" method = "post">
+        <h2>Search</h2>
+
+
+        <div>
+            <label for="searchTerm">Name</label>
+            <input type="text" name="searchTerm" id="searchTerm" />
+        </div>
+
+<!--        <div>-->
+<!--            <label for="searchState">State</label>-->
+<!--            <select  name="searchState" id="searchState">-->
+<!--                <option value=""></option>-->
+<!--                <option th:each="state : ${states}" th:value="${state}" th:text="${state}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <div th:each="park : ${parks}">
+        <div th:if = "${park.designation.equals('National Park')}">
+            <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
+            <h1 th:text="${park.fullName}">Default Name</h1>
+            <div th:each=" image : ${park.images[0]}">
+                <img th:src="${image.url}" width="400" height="200" alt=""/> <!--/*TODO: Add alt text for images */-->
+            </div>
+            <p th:text="${park.description}"></p>
+            <p th:text="${park.states}"></p>
+        </div>
+
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Park'd</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+
+<h1>Park'd</h1>
+
+<div class="login-container">
+    <h2>Register</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input th:field="${registrationFormDTO.username}" id="username" />
+            <p th:errors="${registrationFormDTO.username}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input th:field="${registrationFormDTO.password}" type="password" id="password" />
+            <p class="error" th:errors="${registrationFormDTO.password}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="verifypassword">Verify Password</label>
+            <input class="form-control" th:field="${registrationFormDTO.verifyPassword}" type="password" id="verifypassword"/>
+            <p class="error" th:errors="${registrationFormDTO.verifyPassword}"></p>
+        </div>
+        <button type="submit" class="login-button">Register</button>
+    </form>
+    <div class="register-link">
+        <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Park'd. All rights reserved.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Submit Park Review</h1>
+<form method="post">
+    <label th:for="comment">Comment</label>
+    <input th:field="${comment.input}"/>
+    <div>
+        <h2>Park Rating out of 5</h2>
+    <ul>
+        <li th:each="score : ${review.options}">
+            <label th:text="${score}"></label>
+            <input type="radio" th:field="${review.review}" th:value="${score}"/>
+        </li>
+    </ul>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
