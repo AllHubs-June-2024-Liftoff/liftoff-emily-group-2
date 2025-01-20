@@ -34,14 +34,13 @@
     </div>
 </div>
 
-<!--TODO: Following Code Has Issues Lines 36-45 1x16: -->
-
 <div>
     <h3>Webcams Go Here:</h3>
     <div th:each="webcam : ${npsCamResponse.data}">
         <div th:if = ${webcam.id.equals('577E4D96-8E42-4F3A-B074-944CD63BADB3')}>
-            <div th:text="${webcam.title}">Default Webcam Title</div>
-            <div th:text="${webcam.status}">Webcam Status</div>
+            <a th:href="@{${webcam.url}}" th:text="${webcam.title}"></a>
+            <div th:text="${webcam.status} + ' ' + '&#128994;'" >Webcam Status</div>
+            <!--&#128994; is the escape sequence for a green circle, code should be updated to change to a red X or something if webcam isn't active-->
             <div th:text="${webcam.description}">Webcam Description</div>
         </div>
     </div>
