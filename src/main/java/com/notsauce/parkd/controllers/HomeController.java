@@ -49,7 +49,19 @@ parkRepository.saveAll(response.getData());
         return "landing";
     }
 
-    // TODO: Following Code Has Issues Probably 1x16:
+    @GetMapping("/explore")
+    public String explore(Model model) {
+        ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
+        NpsResponse response;
+        try {
+            response = objectMapperDemo.readJsonWithObjectMapper();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        model.addAttribute("npsResponse", response);
+        return "explore";
+    }
 
     @GetMapping("/parkcarddemo")
     public String parkcard(Model model) {
