@@ -38,7 +38,7 @@ public class Webcam {
     private String statusMessage;
     @Transient
     @JsonInclude
-    private String status;
+    private String status; //Status can be "Active" or ???
 //    @Transient
 //    @JsonInclude
 //    private String tags;

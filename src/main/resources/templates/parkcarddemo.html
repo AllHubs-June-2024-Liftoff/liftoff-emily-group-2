@@ -37,17 +37,23 @@
 <div>
     <h3>Webcams Go Here:</h3>
     <div th:each="webcam : ${npsCamResponse.data}">
-        <div th:if = ${webcam.id.equals('577E4D96-8E42-4F3A-B074-944CD63BADB3')}>
+        <div th:if = ${webcam.status.equals('Active')}>
             <a th:href="@{${webcam.url}}" th:text="${webcam.title}"></a>
             <div th:text="${webcam.status} + ' ' + '&#128994;'" >Webcam Status</div>
             <!--&#128994; is the escape sequence for a green circle, code should be updated to change to a red X or something if webcam isn't active-->
             <div th:text="${webcam.description}">Webcam Description</div>
+            <!--TODO: Extra Line break may be needed for the webcam block to separate them, possibly just handled by CSS? Or formatting some other way -->
         </div>
     </div>
 </div>
 
 </body>
 </html>
+
+<!--TODO: SPECIFICALLY pulls the Hurricane Ridge Webcam by id-->
+<!--<div th:if = ${webcam.id.equals('577E4D96-8E42-4F3A-B074-944CD63BADB3')}> -->
+
+
 
 <!--<div th:each=" view : ${webcam.images}">-->
 <!--    <img src="${view.url}" th:attr="src=${view.url},alt=${view.altText}, title=${view.title}" width="300" height ="300" />-->
