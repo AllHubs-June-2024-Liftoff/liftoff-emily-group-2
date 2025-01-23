@@ -44,6 +44,7 @@ dependencies {
 	implementation("org.springframework.security:spring-security-crypto:5.5.1")
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
 }
 
 tasks.named('test') {
