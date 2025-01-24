@@ -1,6 +1,7 @@
 package com.notsauce.parkd.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.notsauce.parkd.models.data.ParkRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
@@ -16,6 +17,12 @@ public class NpsAlertService {
 
     private static final String API_URL = "https://developer.nps.gov/api/v1/alerts";
 
+    private final ParkRepository parkRepository;
+
+    public NpsAlertService(ParkRepository parkRepository) {
+        this.parkRepository = parkRepository;
+    }
+
     public List<Alert> getAlerts() throws IOException {
         if (apiKey == null || apiKey.isEmpty()) {
             throw new IllegalArgumentException("API Key is not configured properly.");
@@ -30,9 +37,22 @@ public class NpsAlertService {
         try (var inputStream = connection.getInputStream()) {
             ObjectMapper objectMapper = new ObjectMapper();
             NpsAlertResponse response = objectMapper.readValue(inputStream, NpsAlertResponse.class);
-            return response.getData();
+
+            List<Alert> alerts = response.getData();
+
+            for (Alert alert : alerts) {
+                Park park = parkRepository.findByparkCode(alert.getParkCode());
+                if (park != null) {
+                    alert.setParkName(park.getFullName());
+                } else {
+                    alert.setParkName("Unknown Park");
+                }
+            }
+
+            return alerts;
         } finally {
             connection.disconnect();
         }
     }
 }
+

@@ -14,7 +14,7 @@
 
 <ul th:if="${alerts}" th:each="alert : ${alerts}">
     <li>
-        <strong th:text="${alert.title} + ' - Park Code: ' + ${alert.parkCode}">Alert Title</strong>
+        <strong th:text="${alert.parkName} + ' : ' + ${alert.title}">Alert Title</strong>
         <p th:text="${alert.description}">Alert Description</p>
         <p th:text="'Category: ' + ${alert.category}">Category</p><br>
     </li>
