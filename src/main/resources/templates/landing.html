@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Parkd Landing</title>
 </head>
 <body>
+<h1>Landing Page</h1>
+
+<div name="userTools">
+    <nav th:replace="fragments :: page-header"></nav>
+</div>
+
+<div name="search">
+    <a th:href="@{/search}">Search for parks</a>
+</div>
+
+<div name="parkCard">
+    <a th:href="@{/parkcarddemo}">Park Card Demo Path</a>
+</div>
+
+<!--TODO: LANDING CONTENT GOES HERE -->
 
 </body>
 </html>
+
+
+<!--<div th:each="park : ${npsResponse.data}">-->
+<!--    <div th:if = "${park.designation.equals('National Park')}">-->
+<!--        <h1 th:text="${park.fullName}">Default Name</h1>-->
+<!--        <h2 th:text="${park.parkCode}">Default Park Code</h2>-->
+<!--        <div th:each=" image : ${park.images[0]}">-->
+<!--            <img th:src="${image.url}" width="400" height="200"/>-->
+<!--        </div>-->
+<!--        <p th:text="${park.description}"></p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div th:if = "${park.designation.equals('National Park')}"> Preferably filter before this point -->
+
+
+
+

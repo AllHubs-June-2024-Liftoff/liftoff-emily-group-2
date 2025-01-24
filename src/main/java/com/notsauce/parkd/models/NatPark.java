@@ -3,8 +3,9 @@ package com.notsauce.parkd.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Transient;
 
-public class NatPark extends Park {
-    @Transient
-    @JsonInclude
-    private String designation;
+class NatPark extends Park {
+    public NatPark(String designation) {
+        // super(designation);
+    }
+
 }

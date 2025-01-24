@@ -10,7 +10,7 @@
     <a th:href="@{/search}">Search for parks</a>
 </div>
 <div name="parkCard">
-    <a th:href="@{parks/parkcard}">Park Card Demo Path</a>
+    <a th:href="@{/parkcarddemo}">Park Card Demo Path</a>
 </div>
 
 
@@ -22,7 +22,7 @@
         <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
     <h1 th:text="${park.fullName}">Default Name</h1>
     <div th:each=" image : ${park.images[0]}">
-        <img th:src="${image.url}" width="400" height="200"/> <!--/*TODO: Add alt text for images */-->
+        <img th:src="${image.url}" width="400" height="200"/>
     </div>
     <p th:text="${park.description}"></p>
 </div>

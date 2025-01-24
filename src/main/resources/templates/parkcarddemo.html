@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sample Park Card</title>
+</head>
+<body>
+<h3>Olympic National Park Card Sample:</h3>
+<!--Glacier Park code is 'glac'  -->
+<!--'seki' covers both Kings Canyon & Sequoia with designation National Park*s* PLURAL. Likely other parks have same issue -->
+<!--National Park of American Samoa 'npsa' lacks a designation at all so would need to be added as edge case-->
+
+<div th:each="park : ${npsResponse.data}">
+    <div th:if = "${park.parkCode.equals('olym')}">
+        <h2 th:text="${park.name}">Default Name</h2>
+        <div th:text="${park.latitude + ' ' + park.longitude}">Default LatLong</div>
+        <div th:text="${park.states}">Default States</div>
+        <div th:text="${park.designation}">Default Designation</div>
+        <!-- <div th:text="${park.longitude}">Default Long</div> -->
+        <div th:each=" image : ${park.images[3]}"> <!--Image can be specified by array number or list full set-->
+            <img src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="500" height="600"/>
+            <p th:text="'Credit: ' + ${image.credit}"></p>
+            <!-- <img th:src="${image.url}" width="400" height="600"/> -->
+            <!-- <img th:src="${image.url}" width="250" height="300"/> -->
+            <!-- <img th:src="${image.url}" width="600" height="400"/> -->
+            <!--2.5 x 3.5 is trading card size/ratio, 4 x 6 is postcard size/ratio -->
+            <!--Glacier in particular has 7 images (so, 0-6 array) available in images API response. 2nd image [1] is broken-->
+            <!--Grand Canyon only has 4 images, first image is distorted with set pixel width/may not be best/most representative-->
+            <!--May need to manually curate? -->
+            <!--ParkGuessr? With images? -->
+        </div>
+        <p th:text="${park.description}">Description</p>
+        <p th:text="${park.weatherInfo}">Weather Info</p> <!--weatherInfo is not formatted the same for all parks-->
+    </div>
+</div>
+
+<div>
+    <h3>Webcams Go Here:</h3>
+    <div th:each="webcam : ${npsCamResponse.data}">
+        <div th:if = ${webcam.status.equals('Active')}>
+            <a th:href="@{${webcam.url}}" th:text="${webcam.title}"></a>
+            <div th:text="${webcam.status} + ' ' + '&#128994;'" >Webcam Status</div>
+            <!--&#128994; is the escape sequence for a green circle, code should be updated to change to a red X or something if webcam isn't active-->
+            <div th:text="${webcam.description}">Webcam Description</div>
+            <!--TODO: Extra Line break may be needed for the webcam block to separate them, possibly just handled by CSS? Or formatting some other way -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!--TODO: SPECIFICALLY pulls the Hurricane Ridge Webcam by id-->
+<!--<div th:if = ${webcam.id.equals('577E4D96-8E42-4F3A-B074-944CD63BADB3')}> -->
+
+
+
+<!--<div th:each=" view : ${webcam.images}">-->
+<!--    <img src="${view.url}" th:attr="src=${view.url},alt=${view.altText}, title=${view.title}" width="300" height ="300" />-->
+<!--</div>-->
