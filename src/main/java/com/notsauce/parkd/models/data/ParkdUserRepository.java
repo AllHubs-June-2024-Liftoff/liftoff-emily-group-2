@@ -9,6 +9,6 @@ import com.notsauce.parkd.models.ParkdUser;
 
 @Repository
 public interface ParkdUserRepository extends JpaRepository<ParkdUser, Integer> {
-    List<ParkdUser> findByUsernameContainingIgnoreCase(String username);
-    List<ParkdUser> findByEmailContainingIgnoreCase(String email);
+    List<ParkdUser> findByUsernameContainingIgnoreCase(String searchTerm);
+    List<ParkdUser> findByEmailContainingIgnoreCase(String searchTerm);
 }

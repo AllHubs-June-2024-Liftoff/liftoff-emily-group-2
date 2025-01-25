@@ -1,5 +1,6 @@
 package com.notsauce.parkd.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -12,8 +13,12 @@ import lombok.EqualsAndHashCode;
 @Table(name="parkd_users")
 public class ParkdUser extends AbstractEntity{
 
-    
+    @NotBlank
+    @Column(unique = true)
     private String username;
+
+    @NotBlank
+    @Column(unique = true)
     private String email;
 
 

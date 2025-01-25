@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>User Search</title>
+</head>
+<body>
+<h1>User Search</h1>
+
+<form th:action="@{/parkdusersearch}" method="get">
+   <input type="text" name="searchTerm" placeholder="Search by username or email">
+   <button type="submit">Search</button>
+</form>
+
+<!--<div th:if="${users == null || users.isEmpty()}">
+   No users found
+</div>-->
+
+<table th:unless="${users == null || users.isEmpty()}">
+   <thead>
+   <tr>
+      <th>Username</th>
+      <th>Email</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr th:each="user : ${users}">
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.email}"></td>
+   </tr>
+   </tbody>
+</table>
+</body>
+</html>
