@@ -55,6 +55,10 @@ public class Park {
     @JsonIgnore
     @OneToMany(mappedBy = "parkReview")
     private List<Review> reviews;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "subject")
+    private List<Blog> blogs;
 }
 
 /*
