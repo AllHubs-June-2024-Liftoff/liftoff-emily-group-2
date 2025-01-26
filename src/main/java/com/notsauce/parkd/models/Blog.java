@@ -1,6 +1,7 @@
 package com.notsauce.parkd.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
@@ -8,7 +9,9 @@ import lombok.Data;
 public class Blog extends AbstractEntity {
 
     private String blogPost;
+    @ManyToOne
     private User author;
+    @ManyToOne
     private Park subject;
 
 
