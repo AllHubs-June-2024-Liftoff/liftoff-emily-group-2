@@ -1,7 +1,14 @@
 package com.notsauce.parkd.models;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,13 +23,21 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "registered_users")
 public class User extends AbstractEntity {
 
+
+
     @NotNull
+    @Column(name = "username")
     private String username;
 
     @NotNull
+    @Column(name = "pw_hash")
     private String pwHash;
+
+   
+
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
