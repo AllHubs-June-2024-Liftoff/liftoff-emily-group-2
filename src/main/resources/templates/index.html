@@ -18,6 +18,7 @@
 
 
 <div name="userTools">
+    <p><a th:href="@{/alerts}">Alerts</a></p>
     <nav th:replace="fragments :: page-header"></nav>
 </div>
 <div th:each="park : ${npsResponse.data}">

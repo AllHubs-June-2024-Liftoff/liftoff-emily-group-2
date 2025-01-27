@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>National Park Alerts</title>
+</head>
+<body>
+<h1>National Park Alerts</h1>
+
+<p><a th:href="@{/}">Home</a></p>
+
+<div th:if="${error}">
+    <p th:text="${error}" style="color: red;"></p>
+</div>
+
+<ul th:if="${alerts}" th:each="alert : ${alerts}">
+    <li>
+        <strong th:text="${alert.parkName} + ' : ' + ${alert.title}">Alert Title</strong>
+        <p th:text="${alert.description}">Alert Description</p>
+        <p th:text="'Category: ' + ${alert.category}">Category</p><br>
+    </li>
+</ul>
+
+</body>
+</html>
