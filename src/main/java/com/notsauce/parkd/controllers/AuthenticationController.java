@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,6 +150,17 @@ public class AuthenticationController {
        model.addAttribute("user",user.getUsername());
        return "profile";
     }
+
+    @GetMapping("/profile/{username}") // Profile of another user
+    public String userProfile(@PathVariable String username, Model model) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return "userNotFound"; // Important: Handle the case where the user isn't found
+        }
+        model.addAttribute("user", user.getUsername());
+        return "profile";
+    }
+
 
 
 }

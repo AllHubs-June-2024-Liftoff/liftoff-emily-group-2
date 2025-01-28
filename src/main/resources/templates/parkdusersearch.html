@@ -17,16 +17,19 @@
 
 <table th:unless="${users == null || users.isEmpty()}">
    <thead>
-   <tr>
-      <th>Username</th>
-   </tr>
+       <tr>
+           <th>Username</th>
+       </tr>
    </thead>
    <tbody>
-   <tr th:each="user : ${users}">
-      <td th:text="${user.username}"></td>
-      
-   </tr>
+       <tr th:each="user : ${users}">
+           <td><a th:href="@{/profile/{username}(username=${user.username})}" th:text="${user.username}"></a></td>
+       </tr>
    </tbody>
 </table>
+<div th:if="${users == null || users.isEmpty()}">
+   <p>No users found.</p>
+</div>
+
 </body>
 </html>
