@@ -1,5 +1,6 @@
 package com.notsauce.parkd.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;

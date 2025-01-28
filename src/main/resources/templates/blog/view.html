@@ -6,9 +6,16 @@
 </head>
 <body>
 <h1>PARK BLOG</h1>
-<p th:text="${park.fullName}"></p>
+<h1 th:text="${park.fullName}"></h1>
 
+<div th:each="blog : ${park.blogs}">
+    <p th:text="${blog.blogPost}" style=" word-break: break-all;"></p>
+    <p th:text="${blog.author.username}"></p>
+</div>
 
+<div name="parkBlogPost">
+    <a th:href="@{'/blog/create/' + ${park.parkCode}}">submit a blog post for this park</a>
+</div>
 
 </body>
 </html>

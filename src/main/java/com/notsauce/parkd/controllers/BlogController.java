@@ -76,7 +76,10 @@ public class BlogController {
             }
 
             blog.setSubject(aPark);
-            blogRepository.save(blog);
+
+                blogRepository.save(blog);
+
+
         }
         return "redirect:/blog/view/" + parkCode;
     }
