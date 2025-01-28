@@ -3,7 +3,9 @@ package com.notsauce.parkd.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+
 import com.notsauce.parkd.models.User;
+
 import com.notsauce.parkd.models.data.UserRepository;
 import com.notsauce.parkd.models.dto.LoginFormDTO;
 import com.notsauce.parkd.models.dto.RegistrationFormDTO;
@@ -14,7 +16,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -23,6 +28,8 @@ public class AuthenticationController {
 
     @Autowired
     private UserRepository userRepository;
+
+    
 
     private static final String userSessionKey = "user";
 
@@ -83,8 +90,14 @@ public class AuthenticationController {
 
         User newUser = new User(registrationFormDTO.getUsername(), registrationFormDTO.getPassword());
         userRepository.save(newUser);
+        //setUserInSession(request.getSession(), newUser);
+       //return "redirect:/";
+
+
+
         setUserInSession(request.getSession(), newUser);
         return "redirect:/";
+
 
     }
 
@@ -119,6 +132,8 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), theUser);
         return "redirect:/";
     }
+
+
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
