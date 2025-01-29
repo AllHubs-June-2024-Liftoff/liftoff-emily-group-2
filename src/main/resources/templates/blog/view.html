@@ -14,6 +14,7 @@
 <div th:if="${blog.author.username == currentUser.username}">
     <a th:href="@{'/blog/edit/' + ${blog.id}}">edit your blog post</a>
     </div>
+</div>
 
 <div name="parkBlogPost">
     <a th:href="@{'/blog/create/' + ${park.parkCode}}">submit a blog post for this park</a>

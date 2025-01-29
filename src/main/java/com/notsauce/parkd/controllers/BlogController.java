@@ -7,16 +7,15 @@ import com.notsauce.parkd.models.User;
 import com.notsauce.parkd.models.data.BlogRepository;
 import com.notsauce.parkd.models.data.ParkRepository;
 import com.notsauce.parkd.models.data.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -100,13 +99,26 @@ public class BlogController {
     }
 
     @PostMapping("blog/edit/{blogId}")
-    public String changeBlogContent(Model model, @PathVariable int blogId, Blog blog) {
+    public String changeBlogContent(Model model,  @PathVariable int blogId, @RequestParam String blogPost) {
         Blog aBlogPost = new Blog();
         Optional<Blog> optionalBlog = blogRepository.findById(blogId);
         if(optionalBlog.isPresent()) {
                 aBlogPost = optionalBlog.get();
-            blogRepository.save(aBlogPost);
+                aBlogPost.setBlogPost(blogPost);
+               blogRepository.save(aBlogPost);
         }
         return "redirect:/blog/view/" + aBlogPost.getSubject().getParkCode();
     }
+
+    @GetMapping("blog/delete/{blogId}")
+    public String deleteBlogPost(@PathVariable int blogId) {
+
+        Blog aBlogPost = new Blog();
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+        if(optionalBlog.isPresent()) {
+             aBlogPost = optionalBlog.get();
+            blogRepository.delete(aBlogPost);
+    }
+        return "redirect:/blog/view/" + aBlogPost.getSubject().getParkCode();
+}
 }
