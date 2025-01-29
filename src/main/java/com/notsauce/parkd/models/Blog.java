@@ -9,6 +9,7 @@ import lombok.Data;
 @Entity
 public class Blog extends AbstractEntity {
 
+    @Column(length = 16777215)
     private String blogPost;
     @ManyToOne
     private User author;

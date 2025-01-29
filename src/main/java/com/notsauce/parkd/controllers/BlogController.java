@@ -33,13 +33,16 @@ public class BlogController {
     private UserRepository userRepository;
 
     @GetMapping("blog/view/{parkCode}")
-    public String parkBlogPage(Model model, @PathVariable String parkCode) {
+    public String parkBlogPage(Model model, @PathVariable String parkCode, HttpSession session) {
         Optional<Park> optionalPark = parkRepository.findById(parkCode);
         if (optionalPark.isPresent()) {
             Park park = optionalPark.get();
-
             model.addAttribute("park", park);
-
+        }
+        Optional<User> optionalUser = userRepository.findById((Integer) session.getAttribute("user"));
+        if (optionalUser.isPresent()) {
+            User aUser = optionalUser.get();
+            model.addAttribute("currentUser", aUser);
         }
         return "blog/view";
     }
@@ -69,9 +72,9 @@ public class BlogController {
         if (optionalPark.isPresent()) {
             aPark = optionalPark.get();
 
-            Optional<User> optionalUser = userRepository.findById((Integer) session.getAttribute("user"));
-            if (optionalUser.isPresent()) {
-                User aUser = optionalUser.get();
+                Optional<User> optionalUser = userRepository.findById((Integer) session.getAttribute("user"));
+                if (optionalUser.isPresent()) {
+                    User aUser = optionalUser.get();
                 blog.setAuthor(aUser);
             }
 
@@ -82,5 +85,28 @@ public class BlogController {
 
         }
         return "redirect:/blog/view/" + parkCode;
+    }
+
+    @GetMapping("blog/edit/{blogId}")
+    public String displayEditBlogForm(Model model, @PathVariable int blogId) {
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+        if(optionalBlog.isPresent()) {
+            Blog aBlogPost = optionalBlog.get();
+
+            model.addAttribute("blog", aBlogPost);
+
+        }
+        return "blog/edit";
+    }
+
+    @PostMapping("blog/edit/{blogId}")
+    public String changeBlogContent(Model model, @PathVariable int blogId, Blog blog) {
+        Blog aBlogPost = new Blog();
+        Optional<Blog> optionalBlog = blogRepository.findById(blogId);
+        if(optionalBlog.isPresent()) {
+                aBlogPost = optionalBlog.get();
+            blogRepository.save(aBlogPost);
+        }
+        return "redirect:/blog/view/" + aBlogPost.getSubject().getParkCode();
     }
 }
