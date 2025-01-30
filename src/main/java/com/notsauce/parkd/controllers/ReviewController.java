@@ -74,5 +74,42 @@ public class ReviewController {
         }
         return "redirect:/parks/parkcard/" + parkCode;
 }
+
+    @GetMapping("reviews/edit/{commentId}")
+    public String displayEditComment(Model model, @PathVariable int commentId) {
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        if(optionalComment.isPresent()) {
+            Comment aComment = optionalComment.get();
+
+            model.addAttribute("blog", aComment);
+
+        }
+        return "reviews/edit";
+    }
+
+    @PostMapping("reviews/edit/{commentId}")
+    public String changeCommentContent(@PathVariable int commentId, @RequestParam String commentUpdate) {
+        Comment aComment = new Comment();
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        if(optionalComment.isPresent()) {
+             aComment = optionalComment.get();
+            aComment.setInput(commentUpdate);
+            commentRepository.save(aComment);
+        }
+        return "redirect:/parks/parkCard/" + aComment.getPark().getParkCode();
+    }
+
+    @GetMapping("blog/delete/{blogId}")
+    public String deleteBlogPost(@PathVariable int commentId) {
+
+        Comment aComment = new Comment();
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        if(optionalComment.isPresent()) {
+            aComment = optionalComment.get();
+            commentRepository.delete(aComment);
+        }
+        return "redirect:/parks/parkCard/" + aComment.getPark().getParkCode();
+    }
+
 }
 
