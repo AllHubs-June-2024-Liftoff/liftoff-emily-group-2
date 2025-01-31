@@ -13,13 +13,13 @@
             const username = usernameHolder.dataset.username; // Get username from data attribute
     
             if (button.textContent === "Follow") {
-                alert("You are now following " + username + ".");
+                alert("Enjoy Parking Together!!" /*+ username + "."*/);
                 button.textContent = "Unfollow";
-                // AJAX call to follow
+                
             } else {
-                alert("You have unfollowed " + username + ".");
+                alert("It's not you...Plenty of other Parkers to meet! "/* + username + "."*/);
                 button.textContent = "Follow";
-                // AJAX call to unfollow
+                
             }
         }
     </script>
@@ -38,11 +38,7 @@
                 <div>
                     <h4 th:text="${user}" >John Doe</h4>
                     <p>Parks Enthusiast</p>
-                   <!--<div th:if="${user != #authentication.name}"
-                    th:attr="data-is-following=${isFollowing}, data-username=${user}">
-                   <button id="followButton" th:if="${not isFollowing}" th:inline="text">Follow</button>
-                   <button id="followButton" th:if="${isFollowing}" th:inline="text">Unfollow</button>
-               </div>-->
+                  
               
                 </div>
             </div>
@@ -59,8 +55,8 @@
         <div class="profile-info">
             <h1 th:text="${user}" >John Doe</h1>
             <p>Parks Enthusiast</p>
-            <div>
-                 <span id="usernameHolder" th:text="${user}" data-username="${user}"></span>
+             <div>
+                <p>Park Together with <span id="usernameHolder" th:text="${user}" data-username="${user}"></span>? Hit Follow!</p>
                 <button id="followButton" type="button" onclick="toggleFollow()">Follow</button>
             </div>
         </div>
