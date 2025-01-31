@@ -7,36 +7,26 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const followButton = document.getElementById('followButton');
-            if (followButton) {
-                followButton.addEventListener('click', function() {
-                    const container = followButton.parentElement;
-                    const isFollowing = container.dataset.isFollowing === 'true';
-                    const username = container.dataset.username;
-                    const action = isFollowing ? "unfollow" : "follow";
-
-                    fetch(`/follow/${action}/${username}`, {
-                        method: 'POST'
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            return Promise.reject('Network response was not ok');
-                        }
-                        return response; 
-                    })
-                    .then(() => {
-                        followButton.textContent = isFollowing ? 'Follow' : 'Unfollow';
-                        container.dataset.isFollowing = String(!isFollowing);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert("An error occurred. Please try again.");
-                    });
-                });
+        function toggleFollow() {
+            const button = document.getElementById("followButton");
+            const usernameHolder = document.getElementById("usernameHolder");
+            const username = usernameHolder.dataset.username; // Get username from data attribute
+    
+            if (button.textContent === "Follow") {
+                alert("You are now following " + username + ".");
+                button.textContent = "Unfollow";
+                // AJAX call to follow
+            } else {
+                alert("You have unfollowed " + username + ".");
+                button.textContent = "Follow";
+                // AJAX call to unfollow
             }
-        });
+        }
     </script>
+    
+    </body>
+    </html>
+    
 </head>
 <body>
 <header>
@@ -53,10 +43,7 @@
                    <button id="followButton" th:if="${not isFollowing}" th:inline="text">Follow</button>
                    <button id="followButton" th:if="${isFollowing}" th:inline="text">Unfollow</button>
                </div>-->
-               <div th:if="${showFollowButton}"  th:attr="data-is-following=${isFollowing}, data-username=${user}">
-                <button id="followButton" th:if="${not isFollowing}" th:inline="text">Follow</button>
-                <button id="followButton" th:if="${isFollowing}" th:inline="text">Unfollow</button>
-            </div>
+              
                 </div>
             </div>
             <a th:href="@{/}">Home Page</a>
@@ -72,6 +59,10 @@
         <div class="profile-info">
             <h1 th:text="${user}" >John Doe</h1>
             <p>Parks Enthusiast</p>
+            <div>
+                 <span id="usernameHolder" th:text="${user}" data-username="${user}"></span>
+                <button id="followButton" type="button" onclick="toggleFollow()">Follow</button>
+            </div>
         </div>
     </div>
 
