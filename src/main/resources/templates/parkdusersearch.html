@@ -2,13 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
    <title>User Search</title>
+   <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>Search for "Parkers"</h1>
+<h2>Why Park Alone?</h2>
 
-<form th:action="@{/parkdusersearch}" method="get">
-   <input type="text" name="searchTerm" placeholder="Search by username or email">
-   <button type="submit">Search</button>
+
+<form th:action="@{/parkdusersearch}" method="get" style="display: flex; justify-content: center;">
+   <input type="text" name="searchTerm" placeholder="Search by username" style="margin-right: 10px;">
+   <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Search</button>
 </form>
 
 
