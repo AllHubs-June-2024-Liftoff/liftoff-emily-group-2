@@ -158,8 +158,12 @@ public class AuthenticationController {
             return "userNotFound"; // Important: Handle the case where the user isn't found
         }
         model.addAttribute("user", user.getUsername());
+
+        
         return "profile";
     }
+
+
 
 
 

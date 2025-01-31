@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park'd Profile</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const followButton = document.getElementById('followButton');
+            if (followButton) {
+                followButton.addEventListener('click', function() {
+                    const container = followButton.parentElement;
+                    const isFollowing = container.dataset.isFollowing === 'true';
+                    const username = container.dataset.username;
+                    const action = isFollowing ? "unfollow" : "follow";
+
+                    fetch(`/follow/${action}/${username}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return Promise.reject('Network response was not ok');
+                        }
+                        return response; 
+                    })
+                    .then(() => {
+                        followButton.textContent = isFollowing ? 'Follow' : 'Unfollow';
+                        container.dataset.isFollowing = String(!isFollowing);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("An error occurred. Please try again.");
+                    });
+                });
+            }
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -16,6 +48,15 @@
                 <div>
                     <h4 th:text="${user}" >John Doe</h4>
                     <p>Parks Enthusiast</p>
+                   <!--<div th:if="${user != #authentication.name}"
+                    th:attr="data-is-following=${isFollowing}, data-username=${user}">
+                   <button id="followButton" th:if="${not isFollowing}" th:inline="text">Follow</button>
+                   <button id="followButton" th:if="${isFollowing}" th:inline="text">Unfollow</button>
+               </div>-->
+               <div th:if="${showFollowButton}"  th:attr="data-is-following=${isFollowing}, data-username=${user}">
+                <button id="followButton" th:if="${not isFollowing}" th:inline="text">Follow</button>
+                <button id="followButton" th:if="${isFollowing}" th:inline="text">Unfollow</button>
+            </div>
                 </div>
             </div>
             <a th:href="@{/}">Home Page</a>
