@@ -6,23 +6,7 @@
     <title>Park'd Profile</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
 
-    <script>
-        function toggleFollow() {
-            const button = document.getElementById("followButton");
-            const usernameHolder = document.getElementById("usernameHolder");
-            const username = usernameHolder.dataset.username; // Get username from data attribute
-    
-            if (button.textContent === "Follow") {
-                alert("Enjoy Parking Together!!" /*+ username + "."*/);
-                button.textContent = "Unfollow";
-                
-            } else {
-                alert("It's not you...Plenty of other Parkers to meet! "/* + username + "."*/);
-                button.textContent = "Follow";
-                
-            }
-        }
-    </script>
+  
     
     
     </html>
@@ -98,5 +82,6 @@
 <footer>
     &copy; 2025 Park'd. All rights reserved.
 </footer>
+<script src="/JS/follow.js"> </script>
 </body>
 </html>
