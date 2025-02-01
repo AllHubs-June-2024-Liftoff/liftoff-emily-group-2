@@ -12,7 +12,7 @@ import java.util.List;
 public class ActivitiesParks {
         private String id;
         private String name;
-        private List<APNatPark> data;
+        private List<APNatPark> parks;
 }
 
 
