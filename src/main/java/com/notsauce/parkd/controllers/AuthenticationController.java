@@ -22,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
+import static org.thymeleaf.util.StringUtils.substring;
+
 @Controller
 public class AuthenticationController {
 
@@ -147,6 +149,7 @@ public class AuthenticationController {
        HttpSession session = request.getSession();
        User user = getUserFromSession(session);
        model.addAttribute("user",user.getUsername());
+       model.addAttribute("letter",user.getUsername().substring(0, 1));
        return "profile";
     }
 
