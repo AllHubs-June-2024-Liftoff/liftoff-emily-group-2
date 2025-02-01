@@ -81,7 +81,7 @@ public class ReviewController {
         if(optionalComment.isPresent()) {
             Comment aComment = optionalComment.get();
 
-            model.addAttribute("blog", aComment);
+            model.addAttribute("comment", aComment);
 
         }
         return "reviews/edit";
@@ -99,8 +99,8 @@ public class ReviewController {
         return "redirect:/parks/parkCard/" + aComment.getPark().getParkCode();
     }
 
-    @GetMapping("blog/delete/{blogId}")
-    public String deleteBlogPost(@PathVariable int commentId) {
+    @GetMapping("reviews/delete/{commentId}")
+    public String deleteComment(@PathVariable int commentId) {
 
         Comment aComment = new Comment();
         Optional<Comment> optionalComment = commentRepository.findById(commentId);

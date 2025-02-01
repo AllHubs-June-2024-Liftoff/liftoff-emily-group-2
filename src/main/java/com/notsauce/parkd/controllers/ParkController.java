@@ -7,7 +7,9 @@ import com.notsauce.parkd.models.User;
 import com.notsauce.parkd.models.data.CommentRepository;
 import com.notsauce.parkd.models.data.ParkRepository;
 import com.notsauce.parkd.models.data.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +26,11 @@ public class ParkController {
 
 @Autowired
 private ParkRepository parkRepository;
+@Autowired
+private UserRepository userRepository;
 
     @GetMapping("/parkcard/{parkCode}")
-    public String displayViewPark(Model model, @PathVariable String parkCode) {
+    public String displayViewPark(Model model, @PathVariable String parkCode, HttpSession session) {
         Optional<Park> optionalPark = parkRepository.findById(parkCode);
         if (optionalPark.isPresent()) {
             Park park = optionalPark.get();
@@ -72,7 +76,11 @@ private ParkRepository parkRepository;
             if (starScore >= 3) {
                 status = "Favorable";
             }
-
+            Optional<User> optionalUser = userRepository.findById((Integer) session.getAttribute("user"));
+            if (optionalUser.isPresent()) {
+                User aUser = optionalUser.get();
+                model.addAttribute("currentUser", aUser);
+            }
             model.addAttribute("comment", park.getComments());
             model.addAttribute("park", park);
             model.addAttribute("starScore", starScore);

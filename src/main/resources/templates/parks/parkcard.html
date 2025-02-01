@@ -18,7 +18,7 @@
 <div th:each="comment : ${park.comments}">
     <p th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></p>
     <div th:if="${comment.user.username == currentUser.username}">
-        <a th:href="@{'/blog/edit/' + ${blog.id}}">edit your blog post</a>
+        <a th:href="@{'/reviews/edit/' + ${comment.id}}">edit your blog post</a>
     </div>
 </div>
 <h2>Total review average</h2>
