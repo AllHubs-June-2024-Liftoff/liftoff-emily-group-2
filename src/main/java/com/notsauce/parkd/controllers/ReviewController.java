@@ -88,12 +88,12 @@ public class ReviewController {
     }
 
     @PostMapping("reviews/edit/{commentId}")
-    public String changeCommentContent(@PathVariable int commentId, @RequestParam String commentUpdate) {
+    public String changeCommentContent(@PathVariable int commentId, @RequestParam String input) {
         Comment aComment = new Comment();
         Optional<Comment> optionalComment = commentRepository.findById(commentId);
         if(optionalComment.isPresent()) {
-             aComment = optionalComment.get();
-            aComment.setInput(commentUpdate);
+            aComment = optionalComment.get();
+            aComment.setInput(input);
             commentRepository.save(aComment);
         }
         return "redirect:/parks/parkCard/" + aComment.getPark().getParkCode();
