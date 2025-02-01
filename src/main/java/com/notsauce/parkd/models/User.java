@@ -45,6 +45,9 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "userReview")
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "author")
+    private List<Blog> blogPosts;
+
     public User(String username, String password) {
         this.username = username;
         this.pwHash = encoder.encode(password);

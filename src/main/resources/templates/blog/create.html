@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Submit Park Review</h1>
+<form method="post">
+    <label th:for="blog">Submit Blog Post</label>
+    <input type="text" th:field="${blog.blogPost}"/>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

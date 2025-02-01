@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>PARK BLOG</h1>
+<h1 th:text="${park.fullName}"></h1>
+
+<div th:each="blog : ${park.blogs}">
+    <p th:text="${blog.blogPost}" style=" word-break: break-all;"></p>
+    <p th:text="${blog.author.username}"></p>
+<div th:if="${blog.author.username == currentUser.username}">
+    <a th:href="@{'/blog/edit/' + ${blog.id}}">edit your blog post</a>
+    </div>
+</div>
+
+<div name="parkBlogPost">
+    <a th:href="@{'/blog/create/' + ${park.parkCode}}">submit a blog post for this park</a>
+</div>
+
+</body>
+</html>
