@@ -116,6 +116,7 @@ public class BlogController {
         Blog aBlogPost = new Blog();
         Optional<Blog> optionalBlog = blogRepository.findById(blogId);
         if(optionalBlog.isPresent()) {
+
              aBlogPost = optionalBlog.get();
             blogRepository.delete(aBlogPost);
     }
