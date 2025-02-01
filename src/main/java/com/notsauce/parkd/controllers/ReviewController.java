@@ -96,7 +96,7 @@ public class ReviewController {
             aComment.setInput(input);
             commentRepository.save(aComment);
         }
-        return "redirect:/parks/parkCard/" + aComment.getPark().getParkCode();
+        return "redirect:/parks/parkcard/" + aComment.getPark().getParkCode();
     }
 
     @GetMapping("reviews/delete/{commentId}")
@@ -108,7 +108,7 @@ public class ReviewController {
             aComment = optionalComment.get();
             commentRepository.delete(aComment);
         }
-        return "redirect:/parks/parkCard/" + aComment.getPark().getParkCode();
+        return "redirect:/parks/parkcard/" + aComment.getPark().getParkCode();
     }
 
 }
