@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park'd Profile</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+  
+    
+    
+    </html>
+    
 </head>
 <body>
 <header>
@@ -16,6 +22,8 @@
                 <div>
                     <h4 th:text="${user}" >John Doe</h4>
                     <p>Parks Enthusiast</p>
+                  
+              
                 </div>
             </div>
             <a th:href="@{/}">Home Page</a>
@@ -31,6 +39,10 @@
         <div class="profile-info">
             <h1 th:text="${user}" >John Doe</h1>
             <p>Parks Enthusiast</p>
+             <div>
+                <p>Park Together with <span id="usernameHolder" th:text="${user}" data-username="${user}"></span>? Hit Follow!</p>
+                <button id="followButton" type="button" onclick="toggleFollow()">Follow</button>
+            </div>
         </div>
     </div>
 
@@ -70,5 +82,6 @@
 <footer>
     &copy; 2025 Park'd. All rights reserved.
 </footer>
+<script src="/JS/follow.js"> </script>
 </body>
 </html>

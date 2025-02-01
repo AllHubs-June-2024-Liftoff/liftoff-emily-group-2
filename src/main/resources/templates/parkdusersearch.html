@@ -2,31 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
    <title>User Search</title>
+   <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>Search for "Parkers"</h1>
+<h2>Why Park Alone?</h2>
 
-<form th:action="@{/parkdusersearch}" method="get">
-   <input type="text" name="searchTerm" placeholder="Search by username or email">
-   <button type="submit">Search</button>
+
+<form th:action="@{/parkdusersearch}" method="get" style="display: flex; justify-content: center;">
+   <input type="text" name="searchTerm" placeholder="Search by username" style="margin-right: 10px;">
+   <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Search</button>
 </form>
 
-<!--<div th:if="${users == null || users.isEmpty()}">
-   No users found
-</div>-->
+
 
 <table th:unless="${users == null || users.isEmpty()}">
    <thead>
-   <tr>
-      <th>Username</th>
-   </tr>
+       <tr>
+           <th>Username</th>
+       </tr>
    </thead>
    <tbody>
-   <tr th:each="user : ${users}">
-      <td th:text="${user.username}"></td>
-      
-   </tr>
+       <tr th:each="user : ${users}">
+           <td><a th:href="@{/profile/{username}(username=${user.username})}" th:text="${user.username}"></a></td>
+       </tr>
    </tbody>
 </table>
+<div th:if="${users == null || users.isEmpty()}">
+   <p>No users found.</p>
+</div>
+
 </body>
 </html>
