@@ -66,6 +66,9 @@ private ParkRepository parkRepository;
 
             double starScore = (double) (fivesWeight + foursWeight + threesWeight + twosWeight + onesWeight) / (totalNumberOfVotes);
 
+            if (starScore == 0) {
+                status = "No Reviews...Yet";
+            }
             if (starScore >= 3) {
                 status = "Favorable";
             }
