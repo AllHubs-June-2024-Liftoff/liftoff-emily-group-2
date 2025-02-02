@@ -16,4 +16,8 @@ public class NpsResponse {
     private String limit; // Default is 50, need at least 63 for 63 National Parks
     private String start;
     private List<Park> data;
+
+    public List<Park> getData() {
+        return data;
+    }
 }

@@ -37,19 +37,20 @@ parkRepository.saveAll(response.getData());
         return "index";
     }
 
-    @GetMapping("/landing")
-    public String landing(Model model) {
-        ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
-        NpsResponse response;
-        try {
-            response = objectMapperDemo.readJsonWithObjectMapper();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        model.addAttribute("npsResponse", response);
-        return "landing";
-    }
+    //MOVED TO LANDING CONTROLLER
+//    @GetMapping("/landing")
+//    public String landing(Model model) {
+//        ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
+//        NpsResponse response;
+//        try {
+//            response = objectMapperDemo.readJsonWithObjectMapper();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        model.addAttribute("npsResponse", response);
+//        return "landing";
+//    }
 
     @GetMapping("/explore")
     public String explore(Model model) {
