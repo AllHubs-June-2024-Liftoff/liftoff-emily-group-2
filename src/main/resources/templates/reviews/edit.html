@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <label th:for="comment">Update Comment</label>
+    <input type="text" th:field="${comment.input}"/>
+    <input type="submit" value="Submit">
+</form>
+<form>
+    <a th:href="@{'/reviews/delete/' + ${comment.id}}"> DELETE POST</a>
+</form>
+</body>
+</html>

@@ -6,11 +6,21 @@
 </head>
 <body>
 <h1>Park View</h1>
-<p th:text="${'Park Code: ' + park.parkCode}"></p>
-<p th:text="${'Name: ' + park.fullName}"></p>
-    <ul th:each="comment : ${park.comments}">
-        <li th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></li>
-    </ul>
+<h2 th:text="${'Park Code: ' + park.parkCode}"></h2>
+<h3 th:text="${'Name: ' + park.fullName}"></h3>
+<!--    <ul th:each="comment : ${park.comments}">-->
+<!--        <li th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></li>-->
+<!--        <div th:if="${comment.user.username == currentUser.username}">-->
+<!--            <a th:href="@{'/blog/edit/' + ${blog.id}}">edit your blog post</a>-->
+<!--        </div>-->
+<!--    </ul>-->
+
+<div th:each="comment : ${park.comments}">
+    <p th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></p>
+    <div th:if="${comment.user.username == currentUser.username}">
+        <a th:href="@{'/reviews/edit/' + ${comment.id}}">edit your blog post</a>
+    </div>
+</div>
 <h2>Total review average</h2>
 <p th:text="${starScore}"></p>
 <p th:text="${status}"></p>
