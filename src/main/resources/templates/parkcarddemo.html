@@ -8,6 +8,7 @@
 <h3>Olympic National Park Card Sample:</h3>
 <!--Glacier Park code is 'glac'  -->
 <!--'seki' covers both Kings Canyon & Sequoia with designation National Park*s* PLURAL. Likely other parks have same issue -->
+<!--"National Park & Preserve" is another designation edge case-->
 <!--National Park of American Samoa 'npsa' lacks a designation at all so would need to be added as edge case-->
 
 <div th:each="park : ${npsResponse.data}">
@@ -44,6 +45,21 @@
             <div th:text="${webcam.description}">Webcam Description</div>
             <!--TODO: Extra Line break may be needed for the webcam block to separate them, possibly just handled by CSS? Or formatting some other way -->
         </div>
+    </div>
+</div>
+
+<div>
+    <h3>Activities Go Here:</h3>
+    <div th:each="activity : ${npsAPResponse.data}">
+<!--            <div th:if = "${activity.parks.designation.equals('National Park')}">-->
+<!--                <div th:text="${activity.name} + 'Working Correctly?'">Activity Names</div>-->
+<!--            </div>-->
+            <div th:each = "natPark : ${activity.parks}">
+                <div th:if="${natPark.designation.equals('National Park') and natPark.parkCode.equals('olym')}">
+                <div th:text="${activity.name} + ' ' + 'AVAILABLE'">Activity Names</div>
+            </div>
+        </div>
+        <div th:text="${activity.name} + 'SIMPLE TEST PRINT HERE'">Activity Names</div>
     </div>
 </div>
 
