@@ -1,9 +1,8 @@
 package com.notsauce.parkd.controllers;
 
-import com.notsauce.parkd.models.Comment;
-import com.notsauce.parkd.models.Park;
-import com.notsauce.parkd.models.Review;
-import com.notsauce.parkd.models.User;
+import com.notsauce.parkd.mapper.ObjectMapperDemo;
+import com.notsauce.parkd.mapper.WebcamMapper;
+import com.notsauce.parkd.models.*;
 import com.notsauce.parkd.models.data.CommentRepository;
 import com.notsauce.parkd.models.data.ParkRepository;
 import com.notsauce.parkd.models.data.UserRepository;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -81,10 +81,28 @@ private UserRepository userRepository;
                 User aUser = optionalUser.get();
                 model.addAttribute("currentUser", aUser);
             }
+            //Adding API Data For Webcams & Parks
+            ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
+            NpsResponse parkResponse;
+            //
+            WebcamMapper webcamMapper = new WebcamMapper();
+            NpsCamResponse webcamResponse;
+
+            try {
+                parkResponse = objectMapperDemo.readJsonWithObjectMapper();
+                webcamResponse = webcamMapper.readJsonWithWebcamMapper();
+                //Activity Mapper Left Out For Now
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            //
             model.addAttribute("comment", park.getComments());
             model.addAttribute("park", park);
             model.addAttribute("starScore", starScore);
             model.addAttribute("status", status);
+            //Add API Data to Model
+            model.addAttribute("npsResponse", parkResponse);
+            model.addAttribute("npsCamResponse", webcamResponse);
         }
 
         return "parks/parkcard";
