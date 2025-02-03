@@ -19,6 +19,6 @@ public class LandingService {
         // Shuffle parks
         Collections.shuffle(nationalParks);
 
-        return nationalParks.size() > 3 ? nationalParks.subList(0, 3) : nationalParks;
+        return nationalParks.size() > 5 ? nationalParks.subList(0, 5) : nationalParks;
     }
 }

@@ -6,14 +6,19 @@
 </head>
 <body>
   <div th:fragment="page-header" >
+    <nav>
+      <ul>
+        <li><h1>Park'd</h1></li>
     <th:block th:if="${session} and ${session.isEmpty()}">
-      <p><a th:href="@{/register}">Sign Up</a></p>
-      <p><a th:href="@{/login}">Log In</a></p>
+      <li><a th:href="@{/login}"><button class="secondary">Log In</button></a></li>
+      <li><a th:href="@{/register}"><button>Sign Up</button></a></li>
     </th:block>
     <th:block th:unless="${session} and ${session.isEmpty()}">
-      <p><a th:href="@{/profile}">Profile</a></p>
-      <p><a th:href="@{/logout}">Log Out</a></p>
+      <li><a th:href="@{/logout}"><button class="secondary">Log Out</button></a></li>
+      <li><a th:href="@{/profile}"><button>Profile</button></a></li>
     </th:block>
+      </ul>
+    </nav>
   </div>
 </body>
 </html>

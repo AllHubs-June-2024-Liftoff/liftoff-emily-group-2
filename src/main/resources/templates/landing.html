@@ -2,31 +2,35 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkd Landing</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+    >
 </head>
 <body>
-<h1>Landing Page</h1>
+<main class="container">
 
 <div name="userTools">
     <nav th:replace="fragments :: page-header"></nav>
 </div>
 
-<!--TODO: LANDING CONTENT GOES HERE -->
+<h3>Witness the Parks!</h3>
+    <div class="grid">
+        <div th:each="park : ${shuffledNationalParks}">
 
-<!--Attempt at Encapsulating Each Park in a link to itself -->
-<div th:each="park : ${shuffledNationalParks}">
-
-    <div>
-<!--        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>-->
-        <a href th:href="@{'/parks/parkcard/' + ${park.parkCode}}">
-        <div th:each="image : ${park.images[0]}">
-            <img th:src="${image.url}" width="500" height="700"/>
+            <div>
+        <!--        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>-->
+<!--                <a href th:href="@{'/parks/parkcard/' + ${park.parkCode}}">-->
+                <div th:each="image : ${park.images[0]}">
+                    <img th:src="${image.url}" width="800" height="500"/>
+                </div>
+<!--                </a>-->
+                <h5 th:text="${park.name}">Default Name</h5>
+            </div>
         </div>
-        </a>
-        <h1 th:text="${park.fullName}">Default Name</h1>
     </div>
-
-</div>
 
 <!--
 <div th:each="park : ${shuffledNationalParks}">
@@ -48,7 +52,7 @@
 <!--            <img th:src="${image.url}" width="400" height="200"/>-->
 <!--        </div>-->
 
-
+</main>
 </body>
 </html>
 
