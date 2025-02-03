@@ -2,35 +2,83 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Parkcard</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+    >
 </head>
-<body>
-<h1>Park View</h1>
-<h2 th:text="${'Park Code: ' + park.parkCode}"></h2>
-<h3 th:text="${'Name: ' + park.fullName}"></h3>
-<!--    <ul th:each="comment : ${park.comments}">-->
-<!--        <li th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></li>-->
-<!--        <div th:if="${comment.user.username == currentUser.username}">-->
-<!--            <a th:href="@{'/blog/edit/' + ${blog.id}}">edit your blog post</a>-->
-<!--        </div>-->
-<!--    </ul>-->
 
-<div th:each="comment : ${park.comments}">
-    <p th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></p>
-    <div th:if="${comment.user.username == currentUser.username}">
-        <a th:href="@{'/reviews/edit/' + ${comment.id}}">edit your blog post</a>
+<header>
+    <a th:href="@{/}"><button>🌲 Home</button></a>
+</header>
+
+<body class="container">
+<h3 th:text="${'Name: ' + park.fullName}"></h3>
+
+<div th:each="park : ${npsResponse.data}">
+    <div th:if = "${park.parkCode == parkCode}">
+        <h3 th:text="${'State(s): ' + park.states}">States Located</h3>
+        <div th:each=" image : ${park.images[0]}">
+            <article>
+                <img src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="900" height="600" style="display: block; margin: auto; border: 3px solid black;"/>
+                <p th:utext="'<strong>Credit:</strong> ' + ${image.credit}"></p>
+            </article>
+        </div>
+
+        <h4>Description:</h4>
+        <p th:text="${park.description}">Description</p>
+        <h4>Weather Info:</h4>
+        <p th:text="${park.weatherInfo}">Weather Info</p>
+
+        <div>
+            <h4>Webcams (Pending Availability):</h4>
+            <!-- Should only pull Olympic Webcams until npsCamResponse adjusted-->
+            <div th:each="webcam : ${npsCamResponse.data}">
+                <div th:if = ${webcam.status.equals('Active')}>
+                    <article>
+                        <a th:href="@{${webcam.url}}" th:text="${webcam.title}"></a>
+                        <div th:text="${webcam.status} + ' ' + '&#128994;'" >Webcam Status</div>
+                        <hr />
+                        <p><strong>Description:</strong></p>
+                        <div th:text="${webcam.description}">Webcam Description</div>
+                    </article>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<h2>Total review average</h2>
-<p th:text="${starScore}"></p>
-<p th:text="${status}"></p>
 
+
+<!--User Functions Below This Line -->
+
+
+<h3>Reviews:</h3>
+<article>
+    <p th:text="${starScore}"></p>
+    <p th:text="${status}"></p>
+</article>
 <div name="submitReview">
-    <a th:href="@{'/reviews/submit/' + ${park.parkCode}}">Submit a review</a>
+    <a th:href="@{'/reviews/submit/' + ${park.parkCode}}">
+        <button>Submit a review!</button>
+    </a>
 </div>
 
+<h3>Blogs:</h3>
+<div th:each="comment : ${park.comments}">
+    <article>
+        <p th:text="${comment.input} + ' By User: ' + ${comment.user.username}"></p>
+        <div th:if="${comment.user.username == currentUser.username}">
+            <a th:href="@{'/reviews/edit/' + ${comment.id}}">edit your blog post</a>
+        </div>
+    </article>
+</div>
 <div name="parkBlogView">
-    <a th:href="@{'/blog/view/' + ${park.parkCode}}">go to park's blog page</a>
+    <a th:href="@{'/blog/view/' + ${park.parkCode}}">
+        <button th:text="'To the ' + ${park.fullName} + ' blog page -->'"></button>
+    </a>
 </div>
 
 </body>

@@ -10,4 +10,8 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NpsAlertResponse {
     private List<Alert> data;
+
+    public List<Alert> getData() {
+        return data;
+    }
 }

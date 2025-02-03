@@ -1,35 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Parkd Index</title>
-</head>
-<body>
-<h1>Home Page</h1>
-<div name="search">
-    <a th:href="@{/search}">Search for parks</a>
-</div>
-<div name="parkCard">
-    <a th:href="@{/parkcarddemo}">Park Card Demo Path</a>
-</div>
-<div name="parkdUserSearch">
-    <a th:href="@{/parkdusersearch}">Park Together!</a>
-</div>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
+        <title>Park'd Home</title>
+        <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+        >
+
+<!--        THIS STUFF WAS EXPIREMENTAL AND DOESN'T REALLY WORK-->
+<!--        <link-->
+<!--                th:attr="href=${totalReviews >= 3} ? 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css' : 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css'"-->
+<!--                rel="stylesheet">-->
+
+<!--        -->
+<!--        <link th:if="${totalReviews < 3}" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css" rel="stylesheet">-->
+
+<!--   -->
+<!--        <link th:if="${totalReviews >= 3}" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css" rel="stylesheet">-->
 
 
-<div name="userTools">
-    <p><a th:href="@{/alerts}">Alerts </a></p>
-    <nav th:replace="fragments :: page-header"></nav>
-</div>
-<div th:each="park : ${npsResponse.data}">
-    <div th:if = "${park.designation.equals('National Park')}">
-        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
-    <h1 th:text="${park.fullName}">Default Name</h1>
-    <div th:each=" image : ${park.images[0]}">
-        <img th:src="${image.url}" width="400" height="200"/>
-    </div>
-    <p th:text="${park.description}"></p>
-</div>
-</div>
-</body>
+
+<!--        <link-->
+<!--                th:href="${totalReviews} >= 3 ? 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css' : 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css'}"-->
+<!--                rel="stylesheet"-->
+<!--        >-->
+
+<!--        <link th:href="@{${totalReviews >= 7 ? 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css' : 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css'}}" rel="stylesheet">-->
+
+    </head>
+
+    <body class="container">
+
+        <div name="userTools">
+            <nav th:replace="fragments :: homepage-header"></nav>
+        </div>
+
+        <div th:if="${totalReviews < 3}">
+            <p><span>Go review some more parks!</span></p>
+        </div>
+
+        <div th:if="${totalReviews >= 3}">
+            <p th:style="'background-color: #48D1CC;'">You're an elite park reviewer!</p>
+        </div>
+        <p>Total Reviews Submitted: <span th:text="${totalReviews}"></span></p>
+
+        <div th:each="park : ${npsResponse.data}">
+
+            <div class="grid">
+                <div th:if ="${park.designation.equals('National Park')}">
+                    <article>
+                    <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}">
+
+                        <h1 th:text="${park.fullName}" style="display:block; margin: 3px; text-align: center;">Default Name</h1>
+
+                        <div th:each=" image : ${park.images[0]}">
+                            <img th:src="${image.url}" width="400" height="200" style="display: block; margin: auto; border: 1px solid black;"/>
+                        </div>
+                    </a>
+
+                    <p th:text="${park.description}" style="display: block; margin: 3px; text-align: center;"></p>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+
 </html>

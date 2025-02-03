@@ -59,6 +59,10 @@ public class Park {
     @JsonIgnore
     @OneToMany(mappedBy = "subject")
     private List<Blog> blogs;
+
+    public String getDesignation() {
+        return designation;
+    }
 }
 
 /*

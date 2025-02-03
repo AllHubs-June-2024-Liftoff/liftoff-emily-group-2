@@ -7,17 +7,14 @@ import lombok.ToString;
 
 import java.util.List;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class NpsResponse {
+public class NpsActivitiesParksResponse {
     private String total;
-    private String limit; // Default is 50, need at least 63 for 63 National Parks
+    private String limit;
     private String start;
-    private List<Park> data;
-
-    public List<Park> getData() {
-        return data;
-    }
+    private List<ActivitiesParks> data;
 }
