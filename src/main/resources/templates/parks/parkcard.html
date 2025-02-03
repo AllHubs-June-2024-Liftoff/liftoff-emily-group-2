@@ -11,7 +11,7 @@
 
 <div th:each="park : ${npsResponse.data}">
     <div th:if = "${park.parkCode == parkCode}">
-        <h3 th:text="${'States: ' + park.states}">States Located</h3>
+        <h3 th:text="${'State(s): ' + park.states}">States Located</h3>
         <div th:each=" image : ${park.images[0]}">
             <img src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="900" height="600"/>
             <p th:text="'Credit: ' + ${image.credit}"></p>
@@ -23,7 +23,7 @@
         <p th:text="${park.weatherInfo}">Weather Info</p>
 
         <div>
-            <h3>Webcams Go Here:</h3>
+            <h4>Webcams (Pending Availability):</h4>
             <!-- Should only pull Olympic Webcams until npsCamResponse adjusted-->
             <div th:each="webcam : ${npsCamResponse.data}">
                 <div th:if = ${webcam.status.equals('Active')}>

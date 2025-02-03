@@ -92,7 +92,7 @@ private UserRepository userRepository;
             //Initialize Mappers
             ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
             WebcamMapper webcamMapper = new WebcamMapper();
-            //Intitalize Responses
+            //Initialize Responses
             NpsResponse parkResponse;
             NpsCamResponse webcamResponse;
 
