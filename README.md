@@ -7,3 +7,7 @@ about the parks and inspire fellow users to find their next adventure. 🌲
 
 
 -----
+
+**Partially powered by Pico ✨**
+[Official Site] (https://picocss.com/)
+[Github] (https://github.com/picocss/pico)

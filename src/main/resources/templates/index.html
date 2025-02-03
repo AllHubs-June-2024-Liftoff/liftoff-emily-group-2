@@ -6,10 +6,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark">
         <title>Park'd Home</title>
-        <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
-        >
+<!--        <link-->
+<!--                rel="stylesheet"-->
+<!--                href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"-->
+<!--        >-->
+
+<!--        <link-->
+<!--                th:attr="href=${totalReviews >= 3} ? 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css' : 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css'"-->
+<!--                rel="stylesheet">-->
+
+        <!-- If totalReviews < 3, load pico.cyan.min.css -->
+        <link th:if="${totalReviews < 3}" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css" rel="stylesheet">
+
+        <!-- If totalReviews >= 3, load pico.jade.min.css -->
+        <link th:if="${totalReviews >= 3}" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css" rel="stylesheet">
+
+
+
+<!--        <link-->
+<!--                th:href="${totalReviews} >= 3 ? 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css' : 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css'}"-->
+<!--                rel="stylesheet"-->
+<!--        >-->
+
+<!--        <link th:href="@{${totalReviews >= 7 ? 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css' : 'https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css'}}" rel="stylesheet">-->
+
     </head>
 
     <body class="container">
@@ -18,12 +38,19 @@
             <nav th:replace="fragments :: homepage-header"></nav>
         </div>
 
+        <div th:if="${totalReviews < 3}">
+            <p><span>Go review some more parks!</span></p>
+        </div>
+
+        <div th:if="${totalReviews >= 3}">
+            <p th:style="'background-color: #48D1CC;'">You're an elite park reviewer!</p>
+        </div>
         <p>Total Reviews Submitted: <span th:text="${totalReviews}"></span></p>
 
         <div th:each="park : ${npsResponse.data}">
 
             <div class="grid">
-                <div th:if = "${park.designation.equals('National Park')}">
+                <div th:if ="${park.designation.equals('National Park')}">
                     <article>
                     <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}">
 
