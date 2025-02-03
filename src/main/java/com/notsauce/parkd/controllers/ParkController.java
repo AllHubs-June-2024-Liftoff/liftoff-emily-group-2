@@ -24,6 +24,14 @@ import java.util.Optional;
 @RequestMapping("parks")
 public class ParkController {
 
+//Probably don't need this anymore/at the moment if key is hardcoded
+//    private final WebcamMapper webcamMapper;
+//
+//@Autowired
+//public ParkController(WebcamMapper webcamMapper) {
+//    this.webcamMapper = webcamMapper;
+//}
+
 @Autowired
 private ParkRepository parkRepository;
 @Autowired
@@ -81,16 +89,16 @@ private UserRepository userRepository;
                 User aUser = optionalUser.get();
                 model.addAttribute("currentUser", aUser);
             }
-            //Adding API Data For Webcams & Parks
+            //Initialize Mappers
             ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
-            NpsResponse parkResponse;
-            //
             WebcamMapper webcamMapper = new WebcamMapper();
+            //Intitalize Responses
+            NpsResponse parkResponse;
             NpsCamResponse webcamResponse;
 
             try {
                 parkResponse = objectMapperDemo.readJsonWithObjectMapper();
-                webcamResponse = webcamMapper.readJsonWithWebcamMapper();
+                webcamResponse = webcamMapper.readJsonWithWebcamMapper(parkCode);
                 //Activity Mapper Left Out For Now
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -101,6 +109,7 @@ private UserRepository userRepository;
             model.addAttribute("starScore", starScore);
             model.addAttribute("status", status);
             //Add API Data to Model
+            model.addAttribute("parkCode", parkCode); //might not be needed
             model.addAttribute("npsResponse", parkResponse);
             model.addAttribute("npsCamResponse", webcamResponse);
         }

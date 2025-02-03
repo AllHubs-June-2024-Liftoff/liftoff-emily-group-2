@@ -70,22 +70,24 @@ parkRepository.saveAll(response.getData());
     public String parkcard(Model model) {
         ObjectMapperDemo objectMapperDemo = new ObjectMapperDemo();
         NpsResponse parkResponse;
-        //
-        WebcamMapper webcamMapper = new WebcamMapper();
+        //Broken for the Greater Good
+        //WebcamMapper webcamMapper = new WebcamMapper();
         NpsCamResponse webcamResponse;
         //
         ActivityMapper activityMapper = new ActivityMapper();
         NpsActivitiesParksResponse activityResponse;
         try {
             parkResponse = objectMapperDemo.readJsonWithObjectMapper();
-            webcamResponse = webcamMapper.readJsonWithWebcamMapper();
+            //Following is Currently Broken?
+            // webcamResponse = webcamMapper.readJsonWithWebcamMapper();
             activityResponse = activityMapper.readJsonWithActivityMapper();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         model.addAttribute("npsResponse", parkResponse);
-        model.addAttribute("npsCamResponse", webcamResponse);
+        //Also Broken for the greater good
+        //model.addAttribute("npsCamResponse", webcamResponse);
         model.addAttribute("npsAPResponse", activityResponse);
 
         return "parkcarddemo";
