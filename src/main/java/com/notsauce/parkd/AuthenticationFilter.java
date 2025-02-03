@@ -42,7 +42,7 @@ public class AuthenticationFilter  implements HandlerInterceptor {
             return true;
         }
 
-        response.sendRedirect("/login");
+        response.sendRedirect("/landing");
         return false;
     }
 }
