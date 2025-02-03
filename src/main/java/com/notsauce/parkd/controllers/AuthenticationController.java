@@ -148,6 +148,7 @@ public class AuthenticationController {
        HttpSession session = request.getSession();
        User user = getUserFromSession(session);
        model.addAttribute("user",user.getUsername());
+       model.addAttribute("letter",user.getUsername().substring(0, 1));
        return "profile";
     }
 

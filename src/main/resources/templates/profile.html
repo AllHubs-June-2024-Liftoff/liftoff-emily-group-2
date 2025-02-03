@@ -11,10 +11,14 @@
 
 <header>
     <div class="profile">
-        <img src="profile-placeholder.png" alt="Profile Picture">
+        <img th:src="@{${'/Images/' + letter + '.png'}}"
+             onerror="this.onerror=null; this.src='Images/None.png';"
+             alt="Primary Image">
         <div class="dropdown">
             <div class="dropdown-header">
-                <img src="profile-placeholder.png" alt="Profile Picture">
+                <img th:src="@{${'/Images/' + letter + '.png'}}"
+                     onerror="this.onerror=null; this.src='Images/None.png';"
+                     alt="Primary Image">
                 <div>
                     <h4 th:text="${user}" >John Doe</h4>
                     <p>Parks Enthusiast</p>
@@ -31,7 +35,9 @@
 
 <div class="profile-container">
     <div class="profile-header">
-        <img src="profile-placeholder.png" alt="Profile Picture">
+        <img th:src="@{${'/Images/' + letter + '.png'}}"
+             onerror="this.onerror=null; this.src='Images/None.png';"
+             alt="Primary Image">
         <div class="profile-info">
             <h1 th:text="${user}" >John Doe</h1>
             <p>Parks Enthusiast</p>

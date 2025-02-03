@@ -14,4 +14,5 @@ public class Alert {
     private String parkCode;
     private String category;
     private String parkName;
+    private String url;
 }
