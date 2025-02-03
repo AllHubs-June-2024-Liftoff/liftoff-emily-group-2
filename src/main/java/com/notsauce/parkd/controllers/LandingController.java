@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 public class LandingController {
-    private /*final goes here maybe?*/ LandingService landingService;
+    private final LandingService landingService;
 
     @Autowired
     public LandingController(LandingService landingService) {
