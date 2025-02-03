@@ -2,21 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
    <title>User Search</title>
-   <link th:href="@{/css/styles.css}" rel="stylesheet" />
+<!--   <link th:href="@{/css/styles.css}" rel="stylesheet" />-->
 <!--    TODO: MAYBE ADD PICO HERE?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+    >
 </head>
 
 <header>
     <a th:href="@{/}"><button>🌲 Home</button></a>
 </header>
 
-<body>
+<body class="container">
 <h1>Search for "Parkers"</h1>
 <h2>Why Park Alone?</h2>
 
 
 <form th:action="@{/parkdusersearch}" method="get" style="display: flex; justify-content: center;">
-   <input type="text" name="searchTerm" placeholder="Search by username" style="margin-right: 10px;">
+   <input type="search" name="searchTerm" placeholder="Search by username" style="margin-right: 10px;">
    <button type="submit" style="background-color: green; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Search</button>
 </form>
 
