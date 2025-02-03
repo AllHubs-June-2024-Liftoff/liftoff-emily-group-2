@@ -2,22 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>National Park Alerts</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+    >
 </head>
-<body>
-<h1>National Park Alerts</h1>
+<body class="container">
 
-<p><a th:href="@{/}">Home</a></p>
+<p><a th:href="@{/}"><button>Home</button></a></p>
+
+<h1>National Park Alerts:</h1>
 
 <div th:if="${error}">
     <p th:text="${error}" style="color: red;"></p>
 </div>
 
 <ul th:if="${alerts}" th:each="alert : ${alerts}">
-    <li>
-        <strong th:text="${alert.parkName} + ' : ' + ${alert.title}">Alert Title</strong>
-        <p th:text="${alert.description}">Alert Description</p>
-        <p th:text="'Category: ' + ${alert.category}">Category</p><br>
-    </li>
+    <article>
+        <li>
+            <strong th:text="${alert.parkName} + ' : ' + ${alert.title}">Alert Title</strong>
+            <p th:text="${alert.description}">Alert Description</p>
+            <p th:text="'Category: ' + ${alert.category}">Category</p><br>
+        </li>
+    </article>
 </ul>
 
 </body>

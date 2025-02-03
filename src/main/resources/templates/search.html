@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+    >
 </head>
 <body>
-<h1>Search Page</h1>
 
 <div class="container body-content">
 
 
     <form th:action="@{/search/results}" method = "post">
-        <h2>Search</h2>
+        <h2>Search By:</h2>
 
 
         <div>
             <label for="searchTerm">Name</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="search" name="searchTerm" id="searchTerm" />
         </div>
 
 <!--        <div>-->
@@ -34,13 +37,15 @@
 
     <div th:each="park : ${parks}">
         <div th:if = "${park.designation.equals('National Park')}">
-            <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
-            <h1 th:text="${park.fullName}">Default Name</h1>
-            <div th:each=" image : ${park.images[0]}">
-                <img th:src="${image.url}" width="400" height="200" alt=""/> <!--/*TODO: Add alt text for images */-->
-            </div>
-            <p th:text="${park.description}"></p>
-            <p th:text="${park.states}"></p>
+            <article>
+                <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
+                <h1 th:text="${park.fullName}">Default Name</h1>
+                <div th:each=" image : ${park.images[0]}">
+                    <img th:src="${image.url}" width="400" height="200" alt=""/> <!--/*TODO: Add alt text for images */-->
+                </div>
+                <p th:text="${park.description}"></p>
+                <p th:text="${park.states}"></p>
+            </article>
         </div>
 
 

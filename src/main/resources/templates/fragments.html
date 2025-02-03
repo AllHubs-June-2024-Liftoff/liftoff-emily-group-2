@@ -2,23 +2,60 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Fragments</title>
 </head>
-<body>
+<body class="container">
   <div th:fragment="page-header" >
     <nav>
+        <ul>
+          <li>
+            <h1>Park'd</h1>
+          </li>
+        </ul>
+
+        <ul>
+          <th:block th:if="${session} and ${session.isEmpty()}">
+            <li style="margin-right: 10px;"><a th:href="@{/login}"><button class="secondary">Log In</button></a></li>
+            <li><a th:href="@{/register}"><button>Sign Up</button></a></li>
+          </th:block>
+          <th:block th:unless="${session} and ${session.isEmpty()}">
+            <li style="margin-right: 10px;"><a th:href="@{/logout}"><button class="secondary">Log Out</button></a></li>
+            <li><a th:href="@{/profile}"><button>Profile</button></a></li>
+          </th:block>
+        </ul>
+    </nav>
+  </div>
+
+  <div th:fragment="homepage-header" >
+    <nav>
       <ul>
-        <li><h1>Park'd</h1></li>
-    <th:block th:if="${session} and ${session.isEmpty()}">
-      <li><a th:href="@{/login}"><button class="secondary">Log In</button></a></li>
-      <li><a th:href="@{/register}"><button>Sign Up</button></a></li>
-    </th:block>
-    <th:block th:unless="${session} and ${session.isEmpty()}">
-      <li><a th:href="@{/logout}"><button class="secondary">Log Out</button></a></li>
-      <li><a th:href="@{/profile}"><button>Profile</button></a></li>
-    </th:block>
+        <li>
+          <h1>Park'd</h1>
+        </li>
+      </ul>
+
+      <ul>
+        <li><a th:href="@{/search}">Search for parks</a></li>
+        <li><a th:href="@{/parkdusersearch}">Park together!</a></li>
+        <li><a th:href="@{/alerts}">Alerts </a></li>
+      </ul>
+
+      <ul>
+        <th:block th:if="${session} and ${session.isEmpty()}">
+          <li style="margin-right: 10px;"><a th:href="@{/login}"><button class="secondary">Log In</button></a></li>
+          <li><a th:href="@{/register}"><button>Sign Up</button></a></li>
+        </th:block>
+
+        <th:block th:unless="${session} and ${session.isEmpty()}">
+          <li style="margin-right: 10px;"><a th:href="@{/logout}"><button class="secondary">Log Out</button></a></li>
+          <li><a th:href="@{/profile}"><button>Profile</button></a></li>
+        </th:block>
       </ul>
     </nav>
   </div>
+
 </body>
+
 </html>
