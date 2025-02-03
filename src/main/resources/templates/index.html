@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Parkd Index</title>
-</head>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Parkd Index</title>
+    </head>
+
     <body>
         <h1>Home Page</h1>
 
@@ -26,6 +28,8 @@
             <nav th:replace="fragments :: page-header"></nav>
         </div>
 
+        <p>Total Reviews Submitted: <span th:text="${totalReviews}"></span></p>
+
         <div th:each="park : ${npsResponse.data}">
 
             <div th:if = "${park.designation.equals('National Park')}">
@@ -41,6 +45,6 @@
 
             </div>
         </div>
-
     </body>
+
 </html>
