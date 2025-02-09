@@ -22,7 +22,6 @@ public class WebcamMapper {
     public NpsCamResponse readJsonWithWebcamMapper(String parkCode) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        //Just straight up threw the API key in there for the moment
         String fullUrl = String.format("%s?parkCode=%s&limit=220&api_key=%s", API_URL, parkCode, apiKey);
         //216 total webcams among all NPS sites
 
