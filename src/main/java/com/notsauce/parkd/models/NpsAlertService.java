@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class NpsAlertService {
 
-    @Value("${nps.api.key}")
+    @Value("${app.api.key}")
     private String apiKey;
 
     private static final String API_URL = "https://developer.nps.gov/api/v1/alerts";
