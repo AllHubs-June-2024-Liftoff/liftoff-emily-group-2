@@ -43,15 +43,16 @@
     </form>
 
     <div th:each="park : ${parks}">
-        <div th:if = "${park.designation.equals('National Park')}">
+        <div th:if="${park.designation == 'National Park' or park.designation == 'National Parks' or park.designation == 'National Park & Preserve' or park.designation == 'National and State Parks' or park.parkCode == 'npsa'}">
             <article>
-                <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
-                <h1 th:text="${park.fullName}">Default Name</h1>
-                <div th:each=" image : ${park.images[0]}">
-                    <img th:src="${image.url}" width="400" height="200" alt=""/> <!--/*TODO: Add alt text for images */-->
-                </div>
-                <p th:text="${park.description}"></p>
-                <p th:text="${park.states}"></p>
+                <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}">
+                    <h1 th:text="${park.fullName}" style="display:block; margin: 3px; text-align: center;">Default Name</h1>
+                        <div th:each=" image : ${park.images[0]}">
+                            <img th:src="${image.url}" width="400" height="200" style="display: block; margin: auto; border: 1px solid black;"/>
+                        </div>
+                </a>
+
+                <h3 th:text="${'States: ' + park.states}" style="display: block; margin: 3px; text-align: center;"></h3>
             </article>
         </div>
 

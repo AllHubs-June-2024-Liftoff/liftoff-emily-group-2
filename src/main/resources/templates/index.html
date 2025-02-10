@@ -39,6 +39,8 @@
             <nav th:replace="fragments :: homepage-header"></nav>
         </div>
 
+
+        <h4>Review Status:</h4>
         <div th:if="${totalReviews < 3}">
             <p><span>Go review some more parks!</span></p>
         </div>
@@ -49,14 +51,16 @@
         <p>Total Reviews Submitted: <span th:text="${totalReviews}"></span></p>
 
         <div th:if="${currentUser != null}">
-            <h3>Your Reviewed Parks:</h3>
-            <ul>
-                <div th:each="park : ${reviewedParks}">
-                    <li>
-                        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
-                    </li>
-                </div>
-            </ul>
+            <h5>Your Reviewed Parks:</h5>
+            <nav>
+                <ul>
+                    <div th:each="park : ${reviewedParks}">
+                        <li>
+                            <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
         </div>
 
 
