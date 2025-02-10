@@ -2,35 +2,43 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Parkd Explore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Park'd Explore</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+    >
 </head>
-<body>
-<h1>Explore</h1>
-<div name="search">
-    <a th:href="@{/search}">Search for parks</a>
-</div>
-<div name="parkCard">
-    <a th:href="@{/parkcarddemo}">Park Card Demo Path</a>
-</div>
+    <body class="container">
 
-<div name="userTools">
-    <nav th:replace="fragments :: page-header"></nav>
-</div>
-
-<!--TODO: This explore.html page will functionally replace the large "browsing" list of parks that currently resides on the index
-    The index.html will functionally become what is currently named landing.html
-    The home.html will be what a logged-in user is redirected to
--->
-
-<div th:each="park : ${npsResponse.data}">
-    <div th:if = "${park.designation.equals('National Park')}">
-        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
-        <h1 th:text="${park.fullName}">Default Name</h1>
-        <div th:each=" image : ${park.images[0]}">
-            <img th:src="${image.url}" th:attr="src=${image.url},alt=${image.altText},title=${image.title}" width="400" height="200"/>
+        <div name="userTools">
+            <nav th:replace="fragments :: page-header"></nav>
         </div>
-        <p th:text="${park.description}"></p>
-    </div>
-</div>
-</body>
+
+        <h3>Sign Up For More Features!</h3>
+
+        <div th:each="park : ${npsResponse.data}">
+
+            <div class="grid">
+                <!--                National Park, National Parks, National Park & Preserve, National and State Parks, npsa-->
+                <div th:if="${park.designation == 'National Park' or park.designation == 'National Parks' or park.designation == 'National Park & Preserve' or park.designation == 'National and State Parks' or park.parkCode == 'npsa'}">
+                    <article>
+<!--                        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}">-->
+
+                            <h1 th:text="${park.fullName}" style="display:block; margin: 3px; text-align: center;">Default Name</h1>
+
+                            <div th:each=" image : ${park.images[0]}">
+                                <img th:src="${image.url}" width="400" height="200" style="display: block; margin: auto; border: 1px solid black;"/>
+                            </div>
+<!--                        </a>-->
+
+                        <p th:text="${park.description}" style="display: block; margin: 3px; text-align: center;"></p>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
 </html>

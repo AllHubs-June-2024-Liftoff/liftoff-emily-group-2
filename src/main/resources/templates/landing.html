@@ -18,18 +18,20 @@
 
 <h3>Witness the Parks!</h3>
     <div class="grid">
-        <div th:each="park : ${shuffledNationalParks}">
 
-            <div>
-        <!--        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>-->
-<!--                <a href th:href="@{'/parks/parkcard/' + ${park.parkCode}}">-->
-                <div th:each="image : ${park.images[0]}">
-                    <img th:src="${image.url}" width="800" height="500"/>
-                </div>
-<!--                </a>-->
-                <h5 th:text="${park.name}">Default Name</h5>
+            <div th:each="park : ${shuffledNationalParks}">
+                <a th:href="@{/explore}" style="text-decoration: none;">
+                    <div>
+
+                            <div th:each="image : ${park.images[0]}">
+                                <img th:src="${image.url}" width="800" height="500"/>
+                            </div>
+
+                            <h5 th:text="${park.name}">Default Name</h5>
+                    </div>
+                </a>
             </div>
-        </div>
+
     </div>
 
 <!--

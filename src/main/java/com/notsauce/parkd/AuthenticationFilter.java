@@ -15,7 +15,7 @@ public class AuthenticationFilter  implements HandlerInterceptor {
     @Autowired
     AuthenticationController authenticationController;
 
-    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/landing", "/parkcarddemo", "/explore", "/css");
+    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/landing", "/parks/parkcard", "/explore", "/css", "^/parks/parkcard/.+", "/parks/parkcard/acad");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {
@@ -23,6 +23,11 @@ public class AuthenticationFilter  implements HandlerInterceptor {
                 return true;
             }
         }
+            //Regex for wildcard parkcards, may not be necessary with regex added to array above
+             if (path.matches("^/parks/parkcard/.+")) {
+                return true;
+            }
+
         return false;
     }
 
