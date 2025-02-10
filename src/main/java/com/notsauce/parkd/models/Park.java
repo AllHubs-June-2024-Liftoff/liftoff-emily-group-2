@@ -67,6 +67,10 @@ public class Park {
     public String getParkCode() {
         return parkCode;
     }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
 }
 
 /*

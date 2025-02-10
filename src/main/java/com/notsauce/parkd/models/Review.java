@@ -27,4 +27,8 @@ public class Review extends AbstractEntity {
     private User userReview;
     @ManyToOne
     private Park parkReview;
+
+    public Object getParkReview() {
+        return parkReview;
+    }
 }

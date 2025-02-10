@@ -1,12 +1,9 @@
 package com.notsauce.parkd.controllers;
 
-import com.notsauce.parkd.models.User;
+import com.notsauce.parkd.models.*;
 import com.notsauce.parkd.mapper.ActivityMapper;
 import com.notsauce.parkd.mapper.ObjectMapperDemo;
 import com.notsauce.parkd.mapper.WebcamMapper;
-import com.notsauce.parkd.models.NpsActivitiesParksResponse;
-import com.notsauce.parkd.models.NpsCamResponse;
-import com.notsauce.parkd.models.NpsResponse;
 import com.notsauce.parkd.models.data.ParkRepository;
 import com.notsauce.parkd.models.data.UserRepository;
 import jakarta.servlet.http.HttpSession;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -47,6 +45,9 @@ parkRepository.saveAll(response.getData());
 
                 model.addAttribute("currentUser", currentUser);
                 model.addAttribute("totalReviews", currentUser.getReviews().size());
+                model.addAttribute("reviewedParks", currentUser.getReviews().stream()
+                        .map(Review::getParkReview)
+                        .collect(Collectors.toList()));
             }
 
         }

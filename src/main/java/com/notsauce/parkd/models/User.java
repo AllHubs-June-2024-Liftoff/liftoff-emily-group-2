@@ -16,6 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -59,6 +60,9 @@ public class User extends AbstractEntity {
         return encoder.matches(password,pwHash);
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
 }
 
 // For Vincent mainly:

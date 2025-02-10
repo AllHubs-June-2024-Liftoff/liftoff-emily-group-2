@@ -48,6 +48,18 @@
         </div>
         <p>Total Reviews Submitted: <span th:text="${totalReviews}"></span></p>
 
+        <div th:if="${currentUser != null}">
+            <h3>Your Reviewed Parks:</h3>
+            <ul>
+                <div th:each="park : ${reviewedParks}">
+                    <li>
+                        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+
+
         <div th:each="park : ${npsResponse.data}">
 
             <div class="grid">
