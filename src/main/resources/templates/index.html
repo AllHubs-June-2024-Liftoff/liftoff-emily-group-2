@@ -51,7 +51,8 @@
         <div th:each="park : ${npsResponse.data}">
 
             <div class="grid">
-                <div th:if ="${park.designation.equals('National Park')}">
+<!--                National Park, National Parks, National Park & Preserve, National and State Parks, npsa-->
+                <div th:if="${park.designation == 'National Park' or park.designation == 'National Parks' or park.designation == 'National Park & Preserve' or park.designation == 'National and State Parks' or park.parkCode == 'npsa'}">
                     <article>
                     <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}">
 
