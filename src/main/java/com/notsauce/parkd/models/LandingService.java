@@ -11,9 +11,16 @@ public class LandingService {
     public List<Park> getShuffledNatParks(NpsResponse npsResponse) {
         List<Park> parks = npsResponse.getData();
 
+        List<String> validDesignations = List.of("National Park", "National Parks", "National Park & Preserve", "National and State Parks");
+        //National Park, National Parks, National Park & Preserve, National and State Parks,
+
+
+        List<String> validParkCodes = List.of("npsa");
+        //npsa (American Samoa)
+
         // Filter parks
         List<Park> nationalParks = parks.stream()
-                .filter(park -> "National Park".equals(park.getDesignation()))
+                .filter(park -> validDesignations.contains(park.getDesignation()) || (park.getDesignation() == null && validParkCodes.contains(park.getParkCode())))
                 .collect(Collectors.toList());
 
         // Shuffle parks

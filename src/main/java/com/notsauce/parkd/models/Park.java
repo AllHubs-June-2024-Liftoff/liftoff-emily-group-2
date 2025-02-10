@@ -63,6 +63,10 @@ public class Park {
     public String getDesignation() {
         return designation;
     }
+
+    public String getParkCode() {
+        return parkCode;
+    }
 }
 
 /*
