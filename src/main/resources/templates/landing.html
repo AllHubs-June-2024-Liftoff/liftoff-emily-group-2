@@ -34,43 +34,12 @@
 
     </div>
 
-<!--
-<div th:each="park : ${shuffledNationalParks}">
-    <div>
-        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>
-        <h1 th:text="${park.fullName}">Default Name</h1>
-        <div th:each="image : ${park.images[0]}">
-            <img th:src="${image.url}" width="400" height="200"/>
-        </div>
-    </div>
-</div>
--->
-
-<!--<div th:each="park : ${npsResponse.data}">-->
-<!--    <div th:if = "${park.designation.equals('National Park')}">-->
-<!--        <a th:href="@{'/parks/parkcard/' + ${park.parkCode}}" th:text="${park.fullName}"></a>-->
-<!--        <h1 th:text="${park.fullName}">Default Name</h1>-->
-<!--        <div th:each=" image : ${park.images[0]}">-->
-<!--            <img th:src="${image.url}" width="400" height="200"/>-->
-<!--        </div>-->
-
 </main>
 </body>
 </html>
 
 
-<!--<div th:each="park : ${npsResponse.data}">-->
-<!--    <div th:if = "${park.designation.equals('National Park')}">-->
-<!--        <h1 th:text="${park.fullName}">Default Name</h1>-->
-<!--        <h2 th:text="${park.parkCode}">Default Park Code</h2>-->
-<!--        <div th:each=" image : ${park.images[0]}">-->
-<!--            <img th:src="${image.url}" width="400" height="200"/>-->
-<!--        </div>-->
-<!--        <p th:text="${park.description}"></p>-->
-<!--    </div>-->
-<!--</div>-->
 
-<!--<div th:if = "${park.designation.equals('National Park')}"> Preferably filter before this point -->
 
 
 
